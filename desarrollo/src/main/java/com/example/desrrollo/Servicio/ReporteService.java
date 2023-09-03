@@ -13,7 +13,7 @@ public class ReporteService {
 
     private String exportReport(String reporFormat) throws FileNotFoundException {
         List<Object[]> listLineaRegistroProducto = repositoryLineaRegistroProducto.findAllLineaRegistroTransaccion();
-        File file = ResourceUtils.getFile("classpath:ReposteAuxiliar.jrxml");
+        File file = ResourceUtils.getFile("classpath:AuxilioInventario.jrxml");
 
         return null;
     }
