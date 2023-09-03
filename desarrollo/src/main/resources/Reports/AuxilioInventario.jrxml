@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.5.final using JasperReports Library version 6.20.5-3efcf2e67f959db3888d79f73dde2dbd7acb4f8e  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="AuxilioInventario" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d747f9e2-c3de-4adb-9a9d-74d9a3253c4f">
+    <property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+    <property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter"/>
+    <queryString language="SQL">
+        <![CDATA[SELECT rt.fecha, t.id_transaccion as transaccion, rt.descripcion,rt.consecutivo_gravado, pe.nombre as tercero,l.cantidad, l.valor_bruto
+FROM linea_registro_transaccion_producto l, transaccion t, registro_transaccion rt, persona pe
+where l.consecutivo_gravado=rt.consecutivo_gravado and t.id_transaccion=rt.transaccion and rt.tercero=pe.id_persona order by l.id_linea_registro_transaccion_producto]]>
+    </queryString>
+    <field name="fecha" class="java.sql.Timestamp">
+        <property name="com.jaspersoft.studio.field.name" value="fecha"/>
+        <property name="com.jaspersoft.studio.field.label" value="fecha"/>
+        <property name="com.jaspersoft.studio.field.tree.path" value="registro_transaccion"/>
+    </field>
+    <field name="transaccion" class="java.lang.Integer">
+        <property name="com.jaspersoft.studio.field.name" value="id_transaccion"/>
+        <property name="com.jaspersoft.studio.field.label" value="transaccion"/>
+        <property name="com.jaspersoft.studio.field.tree.path" value="transaccion"/>
+    </field>
+    <field name="descripcion" class="java.lang.String">
+        <property name="com.jaspersoft.studio.field.name" value="descripcion"/>
+        <property name="com.jaspersoft.studio.field.label" value="descripcion"/>
+        <property name="com.jaspersoft.studio.field.tree.path" value="registro_transaccion"/>
+    </field>
+    <field name="consecutivo_gravado" class="java.lang.String">
+        <property name="com.jaspersoft.studio.field.name" value="consecutivo_gravado"/>
+        <property name="com.jaspersoft.studio.field.label" value="consecutivo_gravado"/>
+        <property name="com.jaspersoft.studio.field.tree.path" value="registro_transaccion"/>
+    </field>
+    <field name="tercero" class="java.lang.String">
+        <property name="com.jaspersoft.studio.field.name" value="nombre"/>
+        <property name="com.jaspersoft.studio.field.label" value="tercero"/>
+        <property name="com.jaspersoft.studio.field.tree.path" value="persona"/>
+    </field>
+    <field name="cantidad" class="java.math.BigDecimal">
+        <property name="com.jaspersoft.studio.field.name" value="cantidad"/>
+        <property name="com.jaspersoft.studio.field.label" value="cantidad"/>
+        <property name="com.jaspersoft.studio.field.tree.path" value="linea_registro_transaccion_producto"/>
+    </field>
+    <field name="valor_bruto" class="java.math.BigDecimal">
+        <property name="com.jaspersoft.studio.field.name" value="valor_bruto"/>
+        <property name="com.jaspersoft.studio.field.label" value="valor_bruto"/>
+        <property name="com.jaspersoft.studio.field.tree.path" value="linea_registro_transaccion_producto"/>
+    </field>
+    <background>
+        <band splitType="Stretch"/>
+    </background>
+    <title>
+        <band height="89" splitType="Stretch">
+            <staticText>
+                <reportElement x="0" y="0" width="554" height="89" uuid="519156c2-e114-4549-a120-8abed61a3bb0"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="16"/>
+                </textElement>
+                <text><![CDATA[Auxilio Inventario]]></text>
+            </staticText>
+        </band>
+    </title>
+    <pageHeader>
+        <band height="37" splitType="Stretch">
+            <rectangle>
+                <reportElement x="0" y="0" width="553" height="36" uuid="e1d086cb-59a8-480c-9ac6-2d222a564b95"/>
+            </rectangle>
+            <staticText>
+                <reportElement x="310" y="7" width="49" height="23" uuid="6bfc1d6c-c053-47f7-8171-9234be94bd6b"/>
+                <textElement textAlignment="Center"/>
+                <text><![CDATA[tercero]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="81" y="6" width="49" height="23" uuid="ada3d0ba-7040-4c5a-84e7-20021a7b099f"/>
+                <textElement textAlignment="Center"/>
+                <text><![CDATA[transaccion]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="490" y="5" width="59" height="23" uuid="6c50f228-0a60-420b-94ff-344dfd61e796"/>
+                <textElement textAlignment="Center"/>
+                <text><![CDATA[valor bruto]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="410" y="5" width="49" height="23" uuid="b1739011-7823-4235-abcc-b6e222df43c6"/>
+                <textElement textAlignment="Center"/>
+                <text><![CDATA[cantidad]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="160" y="5" width="49" height="23" uuid="a501c29d-4fd2-43d7-a661-ef6f94a30d0f"/>
+                <textElement textAlignment="Center"/>
+                <text><![CDATA[descripcion]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="230" y="7" width="59" height="23" uuid="8ec2800a-d625-454f-bf55-528ce51d1265"/>
+                <textElement textAlignment="Center"/>
+                <text><![CDATA[consegutivo]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="11" y="5" width="49" height="23" uuid="6a9b7420-5181-42f7-8638-2a492244fb99"/>
+                <textElement textAlignment="Center"/>
+                <text><![CDATA[fecha]]></text>
+            </staticText>
+        </band>
+    </pageHeader>
+    <columnHeader>
+        <band height="26" splitType="Stretch"/>
+    </columnHeader>
+    <detail>
+        <band height="43" splitType="Stretch">
+            <textField>
+                <reportElement x="11" y="4" width="60" height="20" uuid="40dd42e6-2094-472c-92e4-985bfa2f1013"/>
+                <textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="81" y="4" width="69" height="20" uuid="86c1dbf1-41f0-4131-ad48-04317275d5af"/>
+                <textFieldExpression><![CDATA[$F{transaccion}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="160" y="4" width="65" height="20" uuid="f3fc122f-c12d-450c-bcea-b4ea48e8fb38"/>
+                <textFieldExpression><![CDATA[$F{descripcion}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="235" y="4" width="60" height="20" uuid="0fb89f50-5b3c-41cf-9019-40962ddd2f25"/>
+                <textFieldExpression><![CDATA[$F{consecutivo_gravado}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="310" y="4" width="60" height="20" uuid="c31d9048-453e-464b-986c-fc4f59540e15"/>
+                <textFieldExpression><![CDATA[$F{tercero}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="399" y="4" width="60" height="20" uuid="a95c44e4-c5da-4f42-a21e-b1e0be758057"/>
+                <textFieldExpression><![CDATA[$F{cantidad}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="487" y="4" width="65" height="20" uuid="d163c4a9-9a6f-4133-8702-5451c62a5598"/>
+                <textFieldExpression><![CDATA[$F{valor_bruto}]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+    <columnFooter>
+        <band height="45" splitType="Stretch"/>
+    </columnFooter>
+    <pageFooter>
+        <band height="69" splitType="Stretch"/>
+    </pageFooter>
+    <summary>
+        <band height="42" splitType="Stretch"/>
+    </summary>
+</jasperReport>
