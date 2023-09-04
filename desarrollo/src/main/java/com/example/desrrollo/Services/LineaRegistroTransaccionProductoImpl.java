@@ -22,6 +22,8 @@ public class LineaRegistroTransaccionProductoImpl{
     }
 
     private ResponseLineaRegistroTransaccionProducto convertiEntityResponse(LineaRegistroTransaccionProducto lineaRegistroTransaccionProducto){
+        ResponseLineaRegistroTransaccionProducto responseLineaRegistroTransaccionProducto = new ResponseLineaRegistroTransaccionProducto();
+
         lineaRegistroTransaccionProducto.setIdLineaRegistroTransaccionProducto((lineaRegistroTransaccionProducto.getIdLineaRegistroTransaccionProducto()));
         lineaRegistroTransaccionProducto.setTransaccion(lineaRegistroTransaccionProducto.getTransaccion());
         lineaRegistroTransaccionProducto.setDescuento(lineaRegistroTransaccionProducto.getDescuento());
@@ -30,7 +32,7 @@ public class LineaRegistroTransaccionProductoImpl{
         lineaRegistroTransaccionProducto.setValorBruto(lineaRegistroTransaccionProducto.getValorBruto());
 
 
-        return null;
+        return responseLineaRegistroTransaccionProducto;
     }
 
 }

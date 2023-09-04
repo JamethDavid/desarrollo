@@ -1,4 +1,4 @@
-package com.example.desrrollo.Servicio;
+package com.example.desrrollo.Services;
 
 import com.example.desrrollo.Entity.LineaRegistroTransaccionProducto;
 import com.example.desrrollo.Repository.RepositoryLineaRegistroProducto;
