@@ -1,2 +1,4 @@
-package com.example.desrrollo.Controller;public class Reportes {
+package com.example.desrrollo.Controller;
+public class Reportes {
+
 }

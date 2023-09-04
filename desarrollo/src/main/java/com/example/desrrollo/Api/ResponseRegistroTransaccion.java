@@ -1,2 +1,3 @@
-package com.example.desrrollo.Api;public class ResponseRegistroTransaccion {
+package com.example.desrrollo.Api;
+public class ResponseRegistroTransaccion {
 }
