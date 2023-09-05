@@ -1,5 +1,6 @@
 package com.example.desrrollo;
 
+import com.example.desrrollo.Api.LineaRegistroTransaccionProductoDTO;
 import com.example.desrrollo.Repository.RepositoryLineaRegistroProducto;
 import com.example.desrrollo.Repository.RepositoryRegistroTransaccionDineroInventario;
 import com.example.desrrollo.Repository.RepositoryRegistroTransacion;
@@ -20,6 +21,7 @@ public class DesarrolloProyectoApplication implements CommandLineRunner {
 	private final RepositoryRegistroTransaccionDineroInventario repositoryRegistroTransaccionDineroInventario;
 
 
+
 	public DesarrolloProyectoApplication(RepositoryRegistroTransacion repositoryRegistroTransacion, RepositoryLineaRegistroProducto repositoryLineaRegistroProducto, RepositoryRegistroTransaccionDineroInventario repositoryRegistroTransaccionDineroInventario) {
 		this.repositoryRegistroTransacion = repositoryRegistroTransacion;
 		this.repositoryLineaRegistroProducto = repositoryLineaRegistroProducto;
@@ -32,20 +34,8 @@ public class DesarrolloProyectoApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		List<Object[]> listaLinea = repositoryLineaRegistroProducto.findAllLineaRegistroTransaccion();
-		listaLinea.forEach(resultado -> {
-			Date fecha = (Date) resultado[0];
+		//List<LineaRegistroTransaccionProductoDTO> listaLinea = repositoryLineaRegistroProducto.findAllLineaRegistroTransaccion();
+		//listaLinea.forEach(System.out::println);
 
-			Byte idTransacion = (Byte) resultado[1];
-			String descripcion = (String) resultado[2];
-			String consecutivoGravado = (String) resultado[3];
-			String nombre = (String) resultado[4];
-			BigDecimal cantidad = (BigDecimal) resultado[5];
-			BigDecimal valorBruto = (BigDecimal) resultado[6];
-
-			System.out.println("fecha = " + fecha + "transaccion = " + idTransacion + "descripcion = "
-					+ descripcion + "consecutivoGravado" + consecutivoGravado + "terceros = " + nombre + "cantidad = " + cantidad + "valorBruto = " + valorBruto
-			);
-		});
 	}
 }

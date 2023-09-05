@@ -1,5 +1,8 @@
 package com.example.desrrollo.Api;
 import lombok.*;
+
+import java.math.BigDecimal;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -9,10 +12,10 @@ public class ResponseLineaRegistroTransaccionProducto {
 
     private long idLineaRegistroTransaccionProducto;
     private double cantidad;
-    private double valorBruto;
+    private BigDecimal valorBruto;
     private double tarifaIva;
     private int tarifaConsumo;
-    private double valorTotal;
+    private BigDecimal valorTotal;
     private String transaccion;
     private String idRegistroTransaccion;
     private String idProducto;

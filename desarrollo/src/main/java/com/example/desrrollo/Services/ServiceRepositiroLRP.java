@@ -1,5 +1,6 @@
 package com.example.desrrollo.Services;
 
+import com.example.desrrollo.Api.LineaRegistroTransaccionProductoDTO;
 import com.example.desrrollo.Entity.LineaRegistroTransaccionProducto;
 import com.example.desrrollo.Repository.RepositoryLineaRegistroProducto;
 import org.springframework.stereotype.Service;
@@ -16,7 +17,7 @@ public class ServiceRepositiroLRP {
     }
 
 
-    public List<Object[]> getListaConsulta() {
+    public List<LineaRegistroTransaccionProductoDTO> getListaConsulta() {
         return repositoryLineaRegistroProducto.findAllLineaRegistroTransaccion();
 
     }

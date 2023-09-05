@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
-import java.util.Optional;
 
 
 public interface RepositoryLineaRegistroProducto extends JpaRepository<LineaRegistroTransaccionProducto,Long> {
@@ -20,15 +19,8 @@ public interface RepositoryLineaRegistroProducto extends JpaRepository<LineaRegi
             "l.id_linea_registro_transaccion_producto;" ,nativeQuery = true)
 
 
-    List<Object[]>findAllLineaRegistroTransaccion();
+    List<LineaRegistroTransaccionProductoDTO>findAllLineaRegistroTransaccion();
 
-    @Query(value = "SELECT NEW com.example.dto.LineaRegistroTransaccionDTO(rt.fecha, t.idTransaccion, rt.descripcion, rt.consecutivoGravado, pe.nombre, l.cantidad, l.valorBruto) " +
-            "FROM LineaRegistroTransaccionProducto l " +
-            "INNER JOIN l.registroTransaccion rt " +
-            "INNER JOIN rt.transaccion t " +
-            "INNER JOIN rt.tercero pe " +
-            "ORDER BY l.idLineaRegistroTransaccionProducto")
-    List<LineaRegistroTransaccionProductoDTO> findAllLineaRegistro();
 }
 
 

@@ -1,6 +1,7 @@
 package com.example.desrrollo.Services;
 
 
+import com.example.desrrollo.Api.LineaRegistroTransaccionProductoDTO;
 import com.example.desrrollo.Repository.RepositoryLineaRegistroProducto;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
@@ -20,7 +21,7 @@ public class ReporteService {
 
     public String exportReport(String reporFormat) throws FileNotFoundException, JRException {
         String path = "d:\\Users\\Usuario\\Downloads";
-        List<Object[]> listLineaRegistroProducto = repositoryLineaRegistroProducto.findAllLineaRegistroTransaccion();
+        List<LineaRegistroTransaccionProductoDTO> listLineaRegistroProducto = repositoryLineaRegistroProducto.findAllLineaRegistroTransaccion();
         File file = ResourceUtils.getFile("classpath:AuxilioInventario.jrxml");
         JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
         JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(listLineaRegistroProducto);
