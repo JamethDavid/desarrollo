@@ -1,6 +1,7 @@
 package com.example.desrrollo.Repository;
 
 
+import com.example.desrrollo.Api.LineaRegistroTransaccionProductoDTO;
 import com.example.desrrollo.Entity.LineaRegistroTransaccionProducto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -21,7 +22,13 @@ public interface RepositoryLineaRegistroProducto extends JpaRepository<LineaRegi
 
     List<Object[]>findAllLineaRegistroTransaccion();
 
-
+    @Query(value = "SELECT NEW com.example.dto.LineaRegistroTransaccionDTO(rt.fecha, t.idTransaccion, rt.descripcion, rt.consecutivoGravado, pe.nombre, l.cantidad, l.valorBruto) " +
+            "FROM LineaRegistroTransaccionProducto l " +
+            "INNER JOIN l.registroTransaccion rt " +
+            "INNER JOIN rt.transaccion t " +
+            "INNER JOIN rt.tercero pe " +
+            "ORDER BY l.idLineaRegistroTransaccionProducto")
+    List<LineaRegistroTransaccionProductoDTO> findAllLineaRegistro();
 }
 
 

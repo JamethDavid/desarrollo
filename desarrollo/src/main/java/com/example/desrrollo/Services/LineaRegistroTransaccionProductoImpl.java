@@ -35,4 +35,6 @@ public class LineaRegistroTransaccionProductoImpl{
         return responseLineaRegistroTransaccionProducto;
     }
 
+
+
 }

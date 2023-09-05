@@ -17,7 +17,7 @@ public class RegistroTransaccion{
     @Column(nullable = false,name = "consecutivo_gravado", length = 24)
     @GeneratedValue(strategy = GenerationType.AUTO)
     private String consecutivoGravado;
-    @Column(nullable = false,name="fecha")
+    @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime fecha;
     @Column(nullable = false,name="descripcion")
     private String descripcion;
