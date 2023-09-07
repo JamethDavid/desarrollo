@@ -15,9 +15,5 @@ public class ControllerLineaRegistroTransaccionProducto {
     @Autowired
     private LineaRegistroTransaccionProductoImpl lineaRegistroTransaccionProductoImpl;
 
-    @GetMapping("/lineaRegistroTransaccionProducto")
-    public List<ResponseLineaRegistroTransaccionProducto>getAllLineaRegistroTransaccionProductoList(){
-        return lineaRegistroTransaccionProductoImpl.getAllResponseLineaRegistroProducto();
-    }
 
 }

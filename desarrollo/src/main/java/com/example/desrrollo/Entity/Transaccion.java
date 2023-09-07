@@ -4,11 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity(name = "transaccion")
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@Data
-@Builder
+
 public class Transaccion {
 
     @Id
@@ -16,4 +12,19 @@ public class Transaccion {
     @Column(name = "id_transaccion")
     private Long idTransaccion;
 
+    public Transaccion(Long idTransaccion) {
+        this.idTransaccion = idTransaccion;
+    }
+
+    public Transaccion() {
+
+    }
+
+    public Long getIdTransaccion() {
+        return idTransaccion;
+    }
+
+    public void setIdTransaccion(Long idTransaccion) {
+        this.idTransaccion = idTransaccion;
+    }
 }
