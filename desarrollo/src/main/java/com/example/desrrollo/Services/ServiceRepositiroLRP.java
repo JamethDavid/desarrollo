@@ -17,9 +17,14 @@ public class ServiceRepositiroLRP {
     }
 
 
-    public List<LineaRegistroTransaccionProductoDTO> getListaConsulta() {
+  /*  public List<LineaRegistroTransaccionProductoDTO> getListaConsulta() {
         return repositoryLineaRegistroProducto.findAllLineaRegistroTransaccion();
 
     }
 
+
+   */
+    public  List<LineaRegistroTransaccionProductoDTO> getListaConsulta(){
+        return repositoryLineaRegistroProducto.find();
+    }
 }

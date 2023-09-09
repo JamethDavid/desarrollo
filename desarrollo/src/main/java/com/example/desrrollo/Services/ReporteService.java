@@ -18,7 +18,7 @@ import java.util.Map;
 public class ReporteService {
     @Autowired
     private RepositoryLineaRegistroProducto repositoryLineaRegistroProducto;
-
+/*
     public String exportReport(String reporFormat) throws FileNotFoundException, JRException {
         String path = "d:\\Users\\Usuario\\Downloads";
         List<LineaRegistroTransaccionProductoDTO> listLineaRegistroProducto = repositoryLineaRegistroProducto.findAllLineaRegistroTransaccion();
@@ -37,5 +37,7 @@ public class ReporteService {
         return "Report generated" + path;
     }
 
+
+ */
 
 }

@@ -61,6 +61,10 @@ public class LineaRegistroTransaccionProducto {
         this.ubicacion = ubicacion;
     }
 
+    public LineaRegistroTransaccionProducto() {
+
+    }
+
     public Long getIdLineaRegistroTransaccionProducto() {
         return idLineaRegistroTransaccionProducto;
     }

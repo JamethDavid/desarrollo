@@ -19,7 +19,11 @@ public interface RepositoryLineaRegistroProducto extends JpaRepository<LineaRegi
             "l.id_linea_registro_transaccion_producto;" ,nativeQuery = true)
 
 
-    List<LineaRegistroTransaccionProductoDTO>findAllLineaRegistroTransaccion();
+    List<LineaRegistroTransaccionProducto>findAllLineaRegistroTransaccion();
+
+
+    @Query("select new com.example.desrrollo.Api.LineaRegistroTransaccionProductoDTO(p.cantidad,p.valorBruto) from linea_registro_transaccion_producto  p")
+    List<LineaRegistroTransaccionProductoDTO>find();
 
 }
 
