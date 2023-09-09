@@ -1,17 +1,11 @@
 package com.example.desrrollo;
 
-import com.example.desrrollo.Api.LineaRegistroTransaccionProductoDTO;
 import com.example.desrrollo.Repository.RepositoryLineaRegistroProducto;
 import com.example.desrrollo.Repository.RepositoryRegistroTransaccionDineroInventario;
 import com.example.desrrollo.Repository.RepositoryRegistroTransacion;
-import org.aspectj.bridge.ICommand;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import java.math.BigDecimal;
-import java.util.Date;
-import java.util.List;
 
 @SpringBootApplication
 public class DesarrolloProyectoApplication implements CommandLineRunner {

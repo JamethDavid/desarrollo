@@ -13,9 +13,11 @@ public class Reportes {
 @Autowired
     private ReporteService reporteService;
 
-@GetMapping("/report/{format}")
+/*@GetMapping("/report/{format}")
     public String generaRepor(@PathVariable String format) throws JRException, FileNotFoundException {
     return reporteService.exportReport(format);
+
 }
+ */
 
 }

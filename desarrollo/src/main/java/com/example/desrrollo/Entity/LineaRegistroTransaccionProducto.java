@@ -5,7 +5,8 @@ import lombok.*;
 
 import java.math.BigDecimal;
 
-@Entity(name = "linea_registro_transaccion_producto")
+@Entity
+@Table(name = "linea_registro_transaccion_producto")
 public class LineaRegistroTransaccionProducto {
     @Id
     @Column(name = "id_linea_registro_transaccion_producto")

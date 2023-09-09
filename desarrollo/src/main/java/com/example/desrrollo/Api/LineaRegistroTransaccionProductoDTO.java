@@ -1,21 +1,16 @@
 package com.example.desrrollo.Api;
 
-import com.example.desrrollo.Entity.RegistroTransaccion;
-import lombok.*;
-
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+public record LineaRegistroTransaccionProductoDTO(
+        LocalDateTime fecha,
+        Long idTransaccion,
+        String descripcion,
+        String consecutivoGravado,
+        String nombre,
+        Double cantidad,
+        BigDecimal valorBruto
 
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
-@Data
-@Getter
-public class LineaRegistroTransaccionProductoDTO {
-
-    Double cantidad;
-    BigDecimal valorBruto;
-
-
+) {
 }
