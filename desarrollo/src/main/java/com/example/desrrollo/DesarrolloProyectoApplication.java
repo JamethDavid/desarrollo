@@ -1,7 +1,6 @@
 package com.example.desrrollo;
 
 import com.example.desrrollo.Repository.RepositoryLineaRegistroProducto;
-import com.example.desrrollo.Repository.RepositoryRegistroTransaccionDineroInventario;
 import com.example.desrrollo.Repository.RepositoryRegistroTransacion;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -12,14 +11,12 @@ public class DesarrolloProyectoApplication implements CommandLineRunner {
 	private final RepositoryRegistroTransacion repositoryRegistroTransacion;
 
 	private final RepositoryLineaRegistroProducto repositoryLineaRegistroProducto;
-	private final RepositoryRegistroTransaccionDineroInventario repositoryRegistroTransaccionDineroInventario;
 
 
 
-	public DesarrolloProyectoApplication(RepositoryRegistroTransacion repositoryRegistroTransacion, RepositoryLineaRegistroProducto repositoryLineaRegistroProducto, RepositoryRegistroTransaccionDineroInventario repositoryRegistroTransaccionDineroInventario) {
+	public DesarrolloProyectoApplication(RepositoryRegistroTransacion repositoryRegistroTransacion, RepositoryLineaRegistroProducto repositoryLineaRegistroProducto) {
 		this.repositoryRegistroTransacion = repositoryRegistroTransacion;
 		this.repositoryLineaRegistroProducto = repositoryLineaRegistroProducto;
-		this.repositoryRegistroTransaccionDineroInventario = repositoryRegistroTransaccionDineroInventario;
 	}
 
 	public static void main (String[]args){

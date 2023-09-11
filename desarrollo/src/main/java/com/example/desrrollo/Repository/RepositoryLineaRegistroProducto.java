@@ -22,8 +22,8 @@ public interface RepositoryLineaRegistroProducto extends JpaRepository<LineaRegi
     List<LineaRegistroTransaccionProducto>findAllLineaRegistroTransaccion();
 
 
-    @Query("select new com.example.desrrollo.Api.LineaRegistroTransaccionProductoDTO(rt.fecha,t.idTransaccion,rt.descripcion,rt.consecutivoGravado,p.nombre,l.cantidad,l.valorBruto) " +
-            "from LineaRegistroTransaccionProducto l" +
+    @Query("select new com.example.desrrollo.Api.LineaRegistroTransaccionProductoDTO(rt.fecha, t.idTransaccion,rt.descripcion,rt.consecutivoGravado,p.nombre,l.cantidad,l.valorBruto) " +
+            "from linea_registro_transaccion_producto l" +
             ",registro_transaccion rt, persona p ,transaccion t")
     List<LineaRegistroTransaccionProductoDTO>findAllByDTO();
 

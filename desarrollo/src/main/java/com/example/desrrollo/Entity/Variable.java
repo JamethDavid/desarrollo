@@ -22,8 +22,5 @@ public class Variable {
     private String abreviatura;
     private String aplicacion;
     private BigDecimal valor;
-    
-
-
 
 }
