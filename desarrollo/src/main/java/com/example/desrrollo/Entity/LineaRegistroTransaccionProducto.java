@@ -29,10 +29,17 @@ public class LineaRegistroTransaccionProducto {
 
     @ManyToOne
     @JoinColumn(name = "consecutivo_gravado")
+<<<<<<< Updated upstream
     private RegistroTransaccion registroTransaccion;
     @ManyToOne
     @JoinColumn(name = "id_producto")
     private Producto producto;
+=======
+    private RegistroTransaccion consecutivoGravado;
+    @ManyToOne
+    @JoinColumn( name = "id_producto")
+    private Producto idProducto;
+>>>>>>> Stashed changes
     @Column(name = "descuento")
     private double descuento;
     @Column(name = "usuario_insercion")

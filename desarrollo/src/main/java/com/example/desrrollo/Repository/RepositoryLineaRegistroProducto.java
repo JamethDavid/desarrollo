@@ -1,7 +1,6 @@
 package com.example.desrrollo.Repository;
 
 
-import com.example.desrrollo.Api.LineaRegistroTransaccionProductoDTO;
 import com.example.desrrollo.Entity.LineaRegistroTransaccionProducto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -22,10 +21,16 @@ public interface RepositoryLineaRegistroProducto extends JpaRepository<LineaRegi
     List<LineaRegistroTransaccionProducto>findAllLineaRegistroTransaccion();
 
 
+<<<<<<< Updated upstream
     @Query("select new com.example.desrrollo.Api.LineaRegistroTransaccionProductoDTO(rt.fecha, t.idTransaccion,rt.descripcion,rt.consecutivoGravado,p.nombre,l.cantidad,l.valorBruto) " +
             "from linea_registro_transaccion_producto l" +
+=======
+    @Query("select new com.example.desrrollo.Api.LineaRegistroTransaccionProductoDTO" +
+            "(rt.fecha,t.idTransaccion,rt.descripcion,rt.consecutivoGravado,p.nombre,l.cantidad,l.valorBruto) " +
+            "from LineaRegistroTransaccionProducto l" +
+>>>>>>> Stashed changes
             ",registro_transaccion rt, persona p ,transaccion t")
-    List<LineaRegistroTransaccionProductoDTO>findAllByDTO();
+    List<LineaRegistroTransaccionProductoDTO>findAll();
 
 }
 
