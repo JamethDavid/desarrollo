@@ -4,9 +4,6 @@
     <property name="com.jaspersoft.studio.data.sql.tables" value=""/>
     <property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter"/>
     <queryString language="SQL">
-        <![CDATA[SELECT rt.fecha, t.id_transaccion as transaccion, rt.descripcion,rt.consecutivo_gravado, pe.nombre as tercero,l.cantidad, l.valor_bruto
-FROM linea_registro_transaccion_producto l, transaccion t, registro_transaccion rt, persona pe
-where l.consecutivo_gravado=rt.consecutivo_gravado and t.id_transaccion=rt.transaccion and rt.tercero=pe.id_persona order by l.id_linea_registro_transaccion_producto]]>
     </queryString>
     <field name="fecha" class="java.time.LocalDateTime">
         <property name="com.jaspersoft.studio.field.name" value="fecha"/>

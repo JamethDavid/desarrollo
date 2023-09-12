@@ -12,12 +12,16 @@ import java.io.FileNotFoundException;
 public class Reportes {
 @Autowired
     private ReporteService reporteService;
+    @GetMapping("/report/{format}")
+    public String generaReporte(@PathVariable String format) {
+        try {
+            String path = "C:\\Users\\LENOVO_THINCENTRE\\Desktop";
 
-/*@GetMapping("/report/{format}")
-    public String generaRepor(@PathVariable String format) throws JRException, FileNotFoundException {
-    return reporteService.exportReport(format);
-
-}
- */
-
+            String fileName = reporteService.exportReport(format, path);
+            return "Reporte generado en la ruta: " + fileName;
+        } catch (FileNotFoundException | JRException e) {
+            e.printStackTrace();
+            return "Error al generar el informe: " + e.getMessage();
+        }
+    }
 }
