@@ -5,29 +5,20 @@ import com.example.desrrollo.Api.LineaRegistroTransaccionProductoDTO;
 import com.example.desrrollo.Entity.LineaRegistroTransaccionProducto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-
+@Repository
 public interface RepositoryLineaRegistroProducto extends JpaRepository<LineaRegistroTransaccionProducto,Long> {
 
-    @Query(value = "select rt.fecha, t.id_transaccion,rt.descripcion , rt.consecutivo_gravado , pe.nombre, l.cantidad ,l.valor_bruto " +
-            "from  linea_registro_transaccion_producto l, registro_transaccion rt , transaccion t , persona pe " +
-            "where l.consecutivo_gravado=rt.consecutivo_gravado " +
-            "and t.id_transaccion=rt.transaccion  " +
-            "and rt.tercero=pe.id_persona order by " +
-            "l.id_linea_registro_transaccion_producto;" ,nativeQuery = true)
-
-
-    List<LineaRegistroTransaccionProducto>findAllLineaRegistroTransaccion();
-
-
     @Query("""
-            SELECT NEW com.example.desrrollo.Api.LineaRegistroTransaccionProductoDTO(r.fecha, t.idTransaccion, r.descripcion, r.consecutivoGravado, p.nombre, l.cantidad, l.valorBruto)
-            FROM registro_transaccion r
-            JOIN r.transaccion t
-            JOIN r.persona p
-            JOIN r.LineaRegistroTransaccionProducto l""")
+    SELECT NEW com.example.desrrollo.Api.LineaRegistroTransaccionProductoDTO(r.fecha,t.idTransaccion,r.descripcion,r.consecutivoGravado,p.nombre,lrp.cantidad,lrp.valorBruto)
+    FROM registro_transaccion r
+    JOIN r.transaccion t
+    JOIN r.persona p
+    JOIN r.lineaRegistroTransaccionProducto lrp
+""")
     List<LineaRegistroTransaccionProductoDTO>findAllByDTO();
 
 }

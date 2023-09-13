@@ -10,7 +10,7 @@
         <property name="com.jaspersoft.studio.field.label" value="fecha"/>
         <property name="com.jaspersoft.studio.field.tree.path" value="registro_transaccion"/>
     </field>
-    <field name="transaccion" class="java.lang.Integer">
+    <field name="idTransaccion" class="java.lang.Long">
         <property name="com.jaspersoft.studio.field.name" value="id_transaccion"/>
         <property name="com.jaspersoft.studio.field.label" value="transaccion"/>
         <property name="com.jaspersoft.studio.field.tree.path" value="transaccion"/>
@@ -20,12 +20,12 @@
         <property name="com.jaspersoft.studio.field.label" value="descripcion"/>
         <property name="com.jaspersoft.studio.field.tree.path" value="registro_transaccion"/>
     </field>
-    <field name="consecutivo_gravado" class="java.lang.String">
+    <field name="consecutivoGravado" class="java.lang.String">
         <property name="com.jaspersoft.studio.field.name" value="consecutivo_gravado"/>
         <property name="com.jaspersoft.studio.field.label" value="consecutivo_gravado"/>
         <property name="com.jaspersoft.studio.field.tree.path" value="registro_transaccion"/>
     </field>
-    <field name="tercero" class="java.lang.String">
+    <field name="nombre" class="java.lang.String">
         <property name="com.jaspersoft.studio.field.name" value="nombre"/>
         <property name="com.jaspersoft.studio.field.label" value="tercero"/>
         <property name="com.jaspersoft.studio.field.tree.path" value="persona"/>
@@ -35,7 +35,7 @@
         <property name="com.jaspersoft.studio.field.label" value="cantidad"/>
         <property name="com.jaspersoft.studio.field.tree.path" value="linea_registro_transaccion_producto"/>
     </field>
-    <field name="valor_bruto" class="java.math.BigDecimal">
+    <field name="valorBruto" class="java.math.BigDecimal">
         <property name="com.jaspersoft.studio.field.name" value="valor_bruto"/>
         <property name="com.jaspersoft.studio.field.label" value="valor_bruto"/>
         <property name="com.jaspersoft.studio.field.tree.path" value="linea_registro_transaccion_producto"/>
@@ -67,7 +67,7 @@
             <staticText>
                 <reportElement x="81" y="6" width="49" height="23" uuid="ada3d0ba-7040-4c5a-84e7-20021a7b099f"/>
                 <textElement textAlignment="Center"/>
-                <text><![CDATA[transaccion]]></text>
+                <text><![CDATA[idTransaccion]]></text>
             </staticText>
             <staticText>
                 <reportElement x="490" y="5" width="59" height="23" uuid="6c50f228-0a60-420b-94ff-344dfd61e796"/>
@@ -107,7 +107,7 @@
             </textField>
             <textField>
                 <reportElement x="81" y="4" width="69" height="20" uuid="86c1dbf1-41f0-4131-ad48-04317275d5af"/>
-                <textFieldExpression><![CDATA[$F{transaccion}]]></textFieldExpression>
+                <textFieldExpression><![CDATA[$F{idTransaccion}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement x="160" y="4" width="65" height="20" uuid="f3fc122f-c12d-450c-bcea-b4ea48e8fb38"/>
@@ -115,11 +115,11 @@
             </textField>
             <textField>
                 <reportElement x="235" y="4" width="60" height="20" uuid="0fb89f50-5b3c-41cf-9019-40962ddd2f25"/>
-                <textFieldExpression><![CDATA[$F{consecutivo_gravado}]]></textFieldExpression>
+                <textFieldExpression><![CDATA[$F{consecutivoGravado}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement x="310" y="4" width="60" height="20" uuid="c31d9048-453e-464b-986c-fc4f59540e15"/>
-                <textFieldExpression><![CDATA[$F{tercero}]]></textFieldExpression>
+                <textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
             </textField>
             <textField>
                 <reportElement x="399" y="4" width="60" height="20" uuid="a95c44e4-c5da-4f42-a21e-b1e0be758057"/>
@@ -127,7 +127,7 @@
             </textField>
             <textField>
                 <reportElement x="487" y="4" width="65" height="20" uuid="d163c4a9-9a6f-4133-8702-5451c62a5598"/>
-                <textFieldExpression><![CDATA[$F{valor_bruto}]]></textFieldExpression>
+                <textFieldExpression><![CDATA[$F{valorBruto}]]></textFieldExpression>
             </textField>
         </band>
     </detail>
