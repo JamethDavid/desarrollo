@@ -29,18 +29,19 @@ public class Producto {
     private float porcentajeIva;
     @Column(name = "porcentaje_consumo")
     private int porcentajeConsumo;
-    @Column(name = "existencias_reale")
+    @Column(name = "existencias_reales")
     private double existenciasReale;
     @Column(name = "stock")
     private int stock;
-    @Column(name = "existencias_virtuale")
+    @Column(name = "existencias_virtuales")
     private double existenciasVirtuale;
     @Column(name = "compuesto")
     private boolean compuesto;
     @Column(name = "facturacion_negativa")
     private boolean facturacionNegativa;
-    @Column(name = "unidad_medida")
-    private int unidadMedida;
+    @ManyToOne
+    @JoinColumn(name = "unidad_medida")
+    private UnidadMedida unidadMedida;
     @Column(name = "linea_producto")
     private int lineaProducto;
     @Column(name = "asesor")
