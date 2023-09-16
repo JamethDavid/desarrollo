@@ -1,6 +1,5 @@
 package com.example.desrrollo.Services;
 
-import com.example.desrrollo.Api.LineaRegistroTransaccionProductoDTO;
 import com.example.desrrollo.Api.ProductoUnidadMedidaListaPrecioDTO;
 import com.example.desrrollo.Repository.RepositoryProducto;
 import net.sf.jasperreports.engine.*;
@@ -15,7 +14,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 @Service
-public class ReporteServiceImplAuxilioInventario {
+public class ReporteServiceListaPrecio {
     @Autowired
     private RepositoryProducto repositoryProducto;
     public String exportReport(String reportFormat, String outputPath) throws FileNotFoundException, JRException {

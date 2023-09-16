@@ -22,7 +22,7 @@ public class ReporteService {
 
     public String exportReport(String reportFormat, String outputPath) throws FileNotFoundException, JRException {
         List<LineaRegistroTransaccionProductoDTO> listDto = repositoryLineaRegistroProducto.findAllByDTO();
-        File file = ResourceUtils.getFile("classpath:AuxilioInventario.jrxml");
+        File file = ResourceUtils.getFile("classpath:Reportes/AuxilioInventario.jrxml");
         JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
         JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(listDto);
         Map<String, Object> parameters = new HashMap<>();
