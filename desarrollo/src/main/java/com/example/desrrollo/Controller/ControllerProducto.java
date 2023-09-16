@@ -1,6 +1,9 @@
 package com.example.desrrollo.Controller;
 
 import com.example.desrrollo.Api.ProductoUnidadMedidaDTO;
+import com.example.desrrollo.Api.ProductoUnidadMedidaInventarioDTO;
+import com.example.desrrollo.Api.ProductoUnidadMedidaListaExistenteDTO;
+import com.example.desrrollo.Api.ProductoUnidadMedidaListaPrecioDTO;
 import com.example.desrrollo.Repository.RepositoryProducto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,21 +18,23 @@ public class ControllerProducto {
 
     @Autowired
     private RepositoryProducto repositoryProducto;
-/*
-    @GetMapping("/lista")
-    public List<ProductoUnidadMedidaDTO> getALListProductoUnidadMedidaDTOS(){
-        return repositoryProducto.findAllProductoUnidadMedidaDTO();
+
+    @GetMapping("/listaPrecio")
+    public List<ProductoUnidadMedidaListaPrecioDTO> getALListProductoUnidadMedidaDTOS(){
+        return repositoryProducto.findAllProductoUnidadMedidaListaPrecioDTO();
     }
+
+
     @GetMapping("/listaExistente")
-    public List<ProductoUnidadMedidaDTO> getALListProductoUnidadMedidaDTOSExistente(){
-        return repositoryProducto.findAllProductoUnidadMedidaDTOListaExistente();
+    public List<ProductoUnidadMedidaListaExistenteDTO> getALListProductoUnidadMedidaDTOSExistente(){
+        return repositoryProducto.findAllProductoUnidadMedidaListaExistenteDTO();
     }
 
 
- */
+
     @GetMapping("/listaInventarioValorizado")
-    public List<ProductoUnidadMedidaDTO> getALListProductoUnidadMedidaDTOSValorizado(){
-        return repositoryProducto.findAllProductoUnidadMedidaDTOInentarioValorizado();
+    public List<ProductoUnidadMedidaInventarioDTO> getALListProductoUnidadMedidaDTOSValorizado(){
+        return repositoryProducto.findAllProductoUnidadMedidaInventarioValorizadoDTO();
     }
 
 }
