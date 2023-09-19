@@ -1,8 +1,8 @@
 package com.example.desrrollo.Services;
 
-
-import com.example.desrrollo.Api.LineaRegistroTransaccionProductoDTO;
-import com.example.desrrollo.Repository.RepositoryLineaRegistroProducto;
+import com.example.desrrollo.Api.ProductoUnidadMedidaListaExistenteDTO;
+import com.example.desrrollo.Api.ProductoUnidadMedidaListaPrecioDTO;
+import com.example.desrrollo.Repository.RepositoryProducto;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,15 +14,14 @@ import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 @Service
-public class ReporteService {
+public class ReporteServiceListaExistente {
     @Autowired
-    private RepositoryLineaRegistroProducto repositoryLineaRegistroProducto;
+    private RepositoryProducto repositoryProducto;
 
     public String exportReport(String reportFormat, String outputPath) throws FileNotFoundException, JRException {
-        List<LineaRegistroTransaccionProductoDTO> listDto = repositoryLineaRegistroProducto.findAllByDTO();
-        File file = ResourceUtils.getFile("classpath:Reportes/AuxilioInventario.jrxml");
+        List<ProductoUnidadMedidaListaExistenteDTO> listDto = repositoryProducto.findAllProductoUnidadMedidaListaExistenteDTO();
+        File file = ResourceUtils.getFile("classpath:Reportes/ListaExistente.jrxml");
         JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
         JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(listDto);
         Map<String, Object> parameters = new HashMap<>();
@@ -30,15 +29,12 @@ public class ReporteService {
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
 
         if ("pdf".equalsIgnoreCase(reportFormat)) {
-            String pdfFilePath = outputPath + "\\AuxilioInventario.pdf"; // Ruta del archivo PDF de salida
+            String pdfFilePath = outputPath + "\\ListaExistente.pdf"; // Ruta del archivo PDF de salida
             JasperExportManager.exportReportToPdfFile(jasperPrint, pdfFilePath);
             return pdfFilePath;
         } else {
             throw new IllegalArgumentException("Formato de informe no válido: " + reportFormat);
         }
+
     }
 }
-
-
-
-
