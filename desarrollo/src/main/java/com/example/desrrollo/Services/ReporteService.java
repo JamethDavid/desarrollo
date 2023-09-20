@@ -20,7 +20,7 @@ public class ReporteService {
     @Autowired
     private RepositoryLineaRegistroProducto repositoryLineaRegistroProducto;
 
-    public String exportReport(String reportFormat, String outputPath) throws FileNotFoundException, JRException {
+    public String exportReport(String outputPath) throws FileNotFoundException, JRException {
         List<LineaRegistroTransaccionProductoDTO> listDto = repositoryLineaRegistroProducto.findAllByDTO();
         File file = ResourceUtils.getFile("classpath:Reportes/AuxilioInventario.jrxml");
         JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
@@ -29,14 +29,11 @@ public class ReporteService {
 
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
 
-        if ("pdf".equalsIgnoreCase(reportFormat)) {
-            String pdfFilePath = outputPath + "\\AuxilioInventario.pdf"; // Ruta del archivo PDF de salida
-            JasperExportManager.exportReportToPdfFile(jasperPrint, pdfFilePath);
-            return pdfFilePath;
-        } else {
-            throw new IllegalArgumentException("Formato de informe no válido: " + reportFormat);
-        }
+        String pdfFilePath = outputPath + "\\AuxilioInventario.pdf"; // Ruta del archivo PDF de salida
+        JasperExportManager.exportReportToPdfFile(jasperPrint, pdfFilePath);
+        return pdfFilePath;
     }
+
 }
 
 

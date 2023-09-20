@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.FileNotFoundException;
-
+@CrossOrigin(origins = {"http://localhost:4200"})
 @RestController
 @RequestMapping("/api")
 public class Reportes {
@@ -18,12 +18,11 @@ public class Reportes {
     private ReporteServiceListaPrecio reporteServiceListaPrecio;
 @Autowired
     private ReporteServiceListaExistente reporteServiceListaExistente;
-    @GetMapping("/reportes/auxilio-inventario/{format}")
-    public String generaReporte(@PathVariable String format) {
+    @GetMapping("/reportes/auxilio-inventario")
+    public String generaReporte() {
         try {
             String path = "C:\\Users\\LENOVO_THINCENTRE\\Desktop";
-
-            String fileName = reporteService.exportReport(format, path);
+            String fileName = reporteService.exportReport(path);
             return "Reporte generado en la ruta: " + fileName;
         } catch (FileNotFoundException | JRException e) {
             e.printStackTrace();
