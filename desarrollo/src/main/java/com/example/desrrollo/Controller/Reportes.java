@@ -3,8 +3,12 @@ package com.example.desrrollo.Controller;
 import com.example.desrrollo.Services.ReporteService;
 import com.example.desrrollo.Services.ReporteServiceListaExistente;
 import com.example.desrrollo.Services.ReporteServiceListaPrecio;
+import com.example.desrrollo.Services.ReportesPDF;
 import net.sf.jasperreports.engine.JRException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.File;
@@ -13,6 +17,8 @@ import java.io.FileNotFoundException;
 @RestController
 @RequestMapping("/api")
 public class Reportes {
+    @Autowired
+    private ReportesPDF reportesPDF;
 @Autowired
     private ReporteService reporteService;
 @Autowired
@@ -61,5 +67,22 @@ public class Reportes {
             e.printStackTrace();
             return "Error al generar el informe: " + e.getMessage();
         }
+
     }
+    @GetMapping("/export-pdf")
+    public ResponseEntity<byte[]> exportPdf() throws JRException, FileNotFoundException {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_PDF);
+        headers.setContentDispositionFormData("petsReport", "petsReport.pdf");
+        return ResponseEntity.ok().headers(headers).body(reportesPDF.exportarPdf());
+    }
+    @GetMapping("/export-List-pdf")
+    public ResponseEntity<byte[]> exporListaPreciostPdf() throws JRException, FileNotFoundException {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_PDF);
+        headers.setContentDispositionFormData("petsReport", "petsReport.pdf");
+        return ResponseEntity.ok().headers(headers).body(reportesPDF.exportarListaPreciaPdf());
+    }
+
+
 }

@@ -2,6 +2,8 @@ package com.example.desrrollo.Services;
 
 
 import com.example.desrrollo.Api.LineaRegistroTransaccionProductoDTO;
+import com.example.desrrollo.Api.ProductoUnidadMedidaListaExistenteDTO;
+import com.example.desrrollo.Api.ProductoUnidadMedidaListaPrecioDTO;
 import com.example.desrrollo.Repository.RepositoryLineaRegistroProducto;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
@@ -35,17 +37,43 @@ public class ReporteService {
     }
 
     private JasperPrint getReport(List<LineaRegistroTransaccionProductoDTO> listDto) throws FileNotFoundException, JRException {
-        Map<String, Object> params = new HashMap<String, Object>();
-        params.put("dataSource", new JRBeanCollectionDataSource(listDto));
-
+        JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(listDto);
         File file = ResourceUtils.getFile("classpath:Reportes/AuxilioInventario.jrxml");
         JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
-
-        JasperPrint report = JasperFillManager.fillReport(jasperReport, params, new JREmptyDataSource());
-
+        Map<String, Object> parameters = new HashMap<>();
+        JasperPrint report = JasperFillManager.fillReport(jasperReport, null, dataSource);
         return report;
     }
 
+    public byte[] exportToPdf(List<LineaRegistroTransaccionProductoDTO> list) throws JRException, FileNotFoundException {
+        return JasperExportManager.exportReportToPdf(getReport(list));
+    }
+
+    private JasperPrint getReportListaPrecio(List<ProductoUnidadMedidaListaPrecioDTO> listDto) throws FileNotFoundException, JRException {
+        JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(listDto);
+        File file = ResourceUtils.getFile("classpath:Reportes/ListaPrecios.jrxml");
+        JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
+        Map<String, Object> parameters = new HashMap<>();
+        JasperPrint report = JasperFillManager.fillReport(jasperReport, null, dataSource);
+        return report;
+    }
+    public byte[] exportToListaPrecioPdf(List<ProductoUnidadMedidaListaPrecioDTO> list) throws JRException, FileNotFoundException {
+        return JasperExportManager.exportReportToPdf(getReportListaPrecio(list));
+    }
+
+    private JasperPrint getReportListaExistente(List<ProductoUnidadMedidaListaExistenteDTO> listDto) throws FileNotFoundException, JRException {
+        JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(listDto);
+        File file = ResourceUtils.getFile("classpath:Reportes/ListaExistente.jrxml");
+        JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
+        Map<String, Object> parameters = new HashMap<>();
+        JasperPrint report = JasperFillManager.fillReport(jasperReport, null, dataSource);
+        return report;
+    }
+    public byte[] exportToListaPExistentePdf(List<ProductoUnidadMedidaListaExistenteDTO> list) throws JRException, FileNotFoundException {
+        return JasperExportManager.exportReportToPdf(getReportListaExistente(list));
+    }
+
+    
 }
 
 
