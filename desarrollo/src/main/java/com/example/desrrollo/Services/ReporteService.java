@@ -29,9 +29,21 @@ public class ReporteService {
 
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
 
-        String pdfFilePath = outputPath + "\\AuxilioInventario.pdf"; // Ruta del archivo PDF de salida
+        String pdfFilePath = outputPath + File.separator + "reporte.pdf"; // Ruta del archivo PDF de salida
         JasperExportManager.exportReportToPdfFile(jasperPrint, pdfFilePath);
         return pdfFilePath;
+    }
+
+    private JasperPrint getReport(List<LineaRegistroTransaccionProductoDTO> listDto) throws FileNotFoundException, JRException {
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("dataSource", new JRBeanCollectionDataSource(listDto));
+
+        File file = ResourceUtils.getFile("classpath:Reportes/AuxilioInventario.jrxml");
+        JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
+
+        JasperPrint report = JasperFillManager.fillReport(jasperReport, params, new JREmptyDataSource());
+
+        return report;
     }
 
 }
