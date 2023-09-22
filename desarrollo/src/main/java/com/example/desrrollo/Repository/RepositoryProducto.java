@@ -1,9 +1,6 @@
 package com.example.desrrollo.Repository;
 
-import com.example.desrrollo.Api.ProductoUnidadMedidaDTO;
-import com.example.desrrollo.Api.ProductoUnidadMedidaInventarioDTO;
-import com.example.desrrollo.Api.ProductoUnidadMedidaListaExistenteDTO;
-import com.example.desrrollo.Api.ProductoUnidadMedidaListaPrecioDTO;
+import com.example.desrrollo.Api.*;
 import com.example.desrrollo.Entity.Producto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -34,4 +31,12 @@ public interface RepositoryProducto extends JpaRepository<Producto,String> {
     
 """)
     List<ProductoUnidadMedidaInventarioDTO>findAllProductoUnidadMedidaInventarioValorizadoDTO();
+    @Query("""
+    SELECT NEW com.example.desrrollo.Api.KardexDTO(k.idKardex,k.fecha,k.detalle,k.valorUnitario,
+    k.cantidadEntrada,k.valorEntrada,k.valorSaldo,
+    k.cantidadSaldo,k.valorSaldo,k.ubica,k.documento)
+    FROM kardex k where k.producto.idProducto =:idVendedor
+""")
+    List<KardexDTO>findAllByIdKardex(String idVendedor);
+
 }
