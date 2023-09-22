@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.io.FileNotFoundException;
 
 @Service
-public class ReportesPDF {
+public class ReportesPDF  implements  IReporteService{
     @Autowired
     private RepositoryProducto repositoryProducto;
     @Autowired
@@ -17,11 +17,17 @@ public class ReportesPDF {
     @Autowired
     private ReporteService reporteService;
 
-    public byte[] exportarPdf() throws JRException, FileNotFoundException {
+
+    public byte[] exportToListaExistentePdf() throws JRException, FileNotFoundException {
+        return reporteService.exportToListaExistentePdf(repositoryProducto.findAllProductoUnidadMedidaListaExistenteDTO());
+    }
+    @Override
+    public byte[] exportPdf() throws JRException, FileNotFoundException {
         return reporteService.exportToPdf(repositoryLineaRegistroProducto.findAllByDTO());
     }
 
-    public byte[] exportarListaPreciaPdf() throws JRException, FileNotFoundException {
+    @Override
+    public byte[] exportToListaPrecioPdf() throws JRException, FileNotFoundException {
         return reporteService.exportToListaPrecioPdf(repositoryProducto.findAllProductoUnidadMedidaListaPrecioDTO());
     }
 }

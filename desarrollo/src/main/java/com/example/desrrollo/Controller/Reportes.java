@@ -1,9 +1,6 @@
 package com.example.desrrollo.Controller;
 
-import com.example.desrrollo.Services.ReporteService;
-import com.example.desrrollo.Services.ReporteServiceListaExistente;
-import com.example.desrrollo.Services.ReporteServiceListaPrecio;
-import com.example.desrrollo.Services.ReportesPDF;
+import com.example.desrrollo.Services.*;
 import net.sf.jasperreports.engine.JRException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -25,6 +22,8 @@ public class Reportes {
     private ReporteServiceListaPrecio reporteServiceListaPrecio;
 @Autowired
     private ReporteServiceListaExistente reporteServiceListaExistente;
+@Autowired
+private  IReporteService IreporteService;
     @GetMapping("/reportes/auxilio-inventario")
     public String generaReporte() {
         try {
@@ -74,14 +73,21 @@ public class Reportes {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_PDF);
         headers.setContentDispositionFormData("petsReport", "petsReport.pdf");
-        return ResponseEntity.ok().headers(headers).body(reportesPDF.exportarPdf());
+        return ResponseEntity.ok().headers(headers).body(IreporteService.exportPdf());
     }
-    @GetMapping("/export-List-pdf")
+    @GetMapping("/export-lista-pdf")
     public ResponseEntity<byte[]> exporListaPreciostPdf() throws JRException, FileNotFoundException {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_PDF);
         headers.setContentDispositionFormData("petsReport", "petsReport.pdf");
-        return ResponseEntity.ok().headers(headers).body(reportesPDF.exportarListaPreciaPdf());
+        return ResponseEntity.ok().headers(headers).body(IreporteService.exportToListaPrecioPdf());
+    }
+    @GetMapping("/export-lista-existente-pdf")
+    public ResponseEntity<byte[]> exportToListaExistentePdf() throws JRException, FileNotFoundException {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_PDF);
+        headers.setContentDispositionFormData("petsReport", "petsReport.pdf");
+        return ResponseEntity.ok().headers(headers).body(IreporteService.exportToListaExistentePdf());
     }
 
 

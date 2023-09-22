@@ -66,4 +66,6 @@ public class Producto {
     @EqualsAndHashCode.Exclude
     @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER,orphanRemoval = true ,mappedBy = "producto")
     private List<LineaRegistroTransaccionProducto> LineaRegistroTransaccionProductos;
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER,orphanRemoval = true,mappedBy = "producto")
+    private List<Kardex> kardexes;
 }

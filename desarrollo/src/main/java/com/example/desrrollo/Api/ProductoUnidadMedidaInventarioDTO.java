@@ -5,6 +5,7 @@ public class ProductoUnidadMedidaInventarioDTO extends ProductoUnidadMedidaDTO{
     private long costo;
 
 
+
     public ProductoUnidadMedidaInventarioDTO() {
     }
 
