@@ -37,10 +37,14 @@ public class ControllerProducto {
     public List<ProductoUnidadMedidaInventarioDTO> getALListProductoUnidadMedidaDTOSValorizado(){
         return repositoryProducto.findAllProductoUnidadMedidaInventarioValorizadoDTO();
     }
-    @GetMapping("/listaInventarioValorizado/{idVendedor}")
-    public List<KardexDTO>getKardexDTOS(@PathVariable String idVendedor){
+    @GetMapping("/listaInventario-kardex/{idVendedor}")
+    public List<KardexDTO> getKardexDTO(@PathVariable String idVendedor){
     return repositoryProducto.findAllByIdKardex(idVendedor);
     }
 
+    @GetMapping("/linea-producto/{nombre}")
+    public List<ProductoLineaProductoDTO> getProductoLineaDTO(@PathVariable String nombre){
+        return repositoryProducto.findAllByNombre(nombre);
+    }
 
 }

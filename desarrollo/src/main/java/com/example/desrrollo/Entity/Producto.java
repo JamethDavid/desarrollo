@@ -42,8 +42,9 @@ public class Producto {
     @ManyToOne
     @JoinColumn(name = "unidad_medida")
     private UnidadMedida unidadMedida;
-    @Column(name = "linea_producto")
-    private int lineaProducto;
+    @ManyToOne
+    @JoinColumn(name = "linea_producto")
+    private LineaProducto lineaProducto;
     @Column(name = "asesor")
     private String asesor;
     @Column(name = "usuario_insercion")

@@ -39,4 +39,15 @@ public interface RepositoryProducto extends JpaRepository<Producto,String> {
 """)
     List<KardexDTO>findAllByIdKardex(String idVendedor);
 
+    @Query("""
+    SELECT NEW com.example.desrrollo.Api.ProductoLineaProductoDTO(lp.idLineaProducto,lp.nombre,p.nombre,p.existenciasReale,p.costo,p.idProducto)
+    FROM producto p
+    JOIN p.lineaProducto lp
+    where lp.nombre = :nombre
+    order by p.nombre
+""")
+    List<ProductoLineaProductoDTO>findAllByNombre(String nombre);
+
 }
+
+
