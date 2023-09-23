@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Repository
@@ -48,6 +49,15 @@ public interface RepositoryProducto extends JpaRepository<Producto,String> {
 """)
     List<ProductoLineaProductoDTO>findAllByNombre(String nombre);
 
+    @Query("""
+    SELECT NEW com.example.desrrollo.Api.RegistroTransaccionInformeSalidaInventarioDTO(rt.consecutivoGravado,rt.fecha,rt.total)
+    FROM registro_transaccion rt
+    where rt.consecutivoGravado like '%'
+    and rt.fecha>=:fechaInicial and rt.fecha<=:fechaFinal
+    ORDER BY rt.fecha
+
+""")
+    List<RegistroTransaccionInformeSalidaInventarioDTO>findAllByFecha(LocalDateTime fechaInicial,LocalDateTime fechaFinal );
 }
 
 
