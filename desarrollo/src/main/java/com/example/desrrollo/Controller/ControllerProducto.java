@@ -3,6 +3,7 @@ package com.example.desrrollo.Controller;
 import com.example.desrrollo.Api.*;
 import com.example.desrrollo.Repository.RepositoryKardex;
 import com.example.desrrollo.Repository.RepositoryProducto;
+import com.example.desrrollo.Repository.RepositoryRegistroTransacion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,7 +21,7 @@ public class ControllerProducto {
     @Autowired
     private RepositoryProducto repositoryProducto;
     @Autowired
-    private RepositoryKardex repositoryKardex;
+    private RepositoryRegistroTransacion repositoryRegistroTransacion;
 
     @GetMapping("/listaPrecio")
     public List<ProductoUnidadMedidaListaPrecioDTO> getALListProductoUnidadMedidaDTOS(){
@@ -49,6 +50,12 @@ public class ControllerProducto {
     public List<RegistroTransaccionInformeSalidaInventarioDTO> getRegistroTransacionSalidaInventarioDTO(
              @PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime fechaInicial
             ,@PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)LocalDateTime fechaFinal){
-        return repositoryProducto.findAllByFecha(fechaInicial,fechaFinal);
+        return repositoryRegistroTransacion.findAllByFechaSalida(fechaInicial,fechaFinal);
+    }
+    @GetMapping("/entrada-inventario/{fechaInicial}/{fechaFinal}")
+    public List<RegistroTransaccionInformeEntradaInventarioDTO> getRegistroTransacionEntradaInventarioDTO(
+            @PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime fechaInicial
+            ,@PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)LocalDateTime fechaFinal){
+        return repositoryRegistroTransacion.findAllByFechaEntarda(fechaInicial,fechaFinal);
     }
 }

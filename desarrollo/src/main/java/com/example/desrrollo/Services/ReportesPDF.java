@@ -21,6 +21,12 @@ public class ReportesPDF  implements  IReporteService{
     public byte[] exportToListaExistentePdf() throws JRException, FileNotFoundException {
         return reporteService.exportToListaExistentePdf(repositoryProducto.findAllProductoUnidadMedidaListaExistenteDTO());
     }
+
+    @Override
+    public byte[] exportToInventarioValorizadoPdf() throws JRException, FileNotFoundException {
+        return reporteService.exportToInventarioValorizadoPdf(repositoryProducto.findAllProductoUnidadMedidaInventarioValorizadoDTO());
+    }
+
     @Override
     public byte[] exportPdf() throws JRException, FileNotFoundException {
         return reporteService.exportToPdf(repositoryLineaRegistroProducto.findAllByDTO());

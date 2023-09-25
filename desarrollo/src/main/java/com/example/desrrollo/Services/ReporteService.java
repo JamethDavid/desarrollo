@@ -2,6 +2,7 @@ package com.example.desrrollo.Services;
 
 
 import com.example.desrrollo.Api.LineaRegistroTransaccionProductoDTO;
+import com.example.desrrollo.Api.ProductoUnidadMedidaInventarioDTO;
 import com.example.desrrollo.Api.ProductoUnidadMedidaListaExistenteDTO;
 import com.example.desrrollo.Api.ProductoUnidadMedidaListaPrecioDTO;
 import com.example.desrrollo.Repository.RepositoryLineaRegistroProducto;
@@ -19,23 +20,6 @@ import java.util.Map;
 
 @Service
 public class ReporteService{
-    @Autowired
-    private RepositoryLineaRegistroProducto repositoryLineaRegistroProducto;
-
-    public String exportReport(String outputPath) throws FileNotFoundException, JRException {
-        List<LineaRegistroTransaccionProductoDTO> listDto = repositoryLineaRegistroProducto.findAllByDTO();
-        File file = ResourceUtils.getFile("classpath:Reportes/AuxilioInventario.jrxml");
-        JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
-        JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(listDto);
-        Map<String, Object> parameters = new HashMap<>();
-
-        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
-
-        String pdfFilePath = outputPath + File.separator + "reporte.pdf"; // Ruta del archivo PDF de salida
-        JasperExportManager.exportReportToPdfFile(jasperPrint, pdfFilePath);
-        return pdfFilePath;
-    }
-
     private JasperPrint getReport(List<?> listDto, String jrxmlFileName) throws FileNotFoundException, JRException {
         JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(listDto);
         File file = ResourceUtils.getFile("classpath:Reportes/" + jrxmlFileName + ".jrxml");
@@ -55,6 +39,9 @@ public class ReporteService{
 
     public byte[] exportToListaExistentePdf(List<ProductoUnidadMedidaListaExistenteDTO> list) throws JRException, FileNotFoundException {
         return JasperExportManager.exportReportToPdf(getReport(list, "ListaExistente"));
+    }
+    public byte[] exportToInventarioValorizadoPdf(List<ProductoUnidadMedidaInventarioDTO> list) throws JRException, FileNotFoundException {
+        return JasperExportManager.exportReportToPdf(getReport(list, "InventarioValorizado"));
     }
 
 }

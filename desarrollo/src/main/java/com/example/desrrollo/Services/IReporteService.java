@@ -10,5 +10,6 @@ public interface IReporteService {
     byte[] exportPdf() throws JRException, FileNotFoundException;
     byte[] exportToListaPrecioPdf() throws JRException, FileNotFoundException;
     byte[] exportToListaExistentePdf() throws JRException, FileNotFoundException;
+    byte[] exportToInventarioValorizadoPdf() throws JRException, FileNotFoundException;
 
 }
