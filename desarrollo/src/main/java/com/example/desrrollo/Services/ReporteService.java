@@ -1,10 +1,7 @@
 package com.example.desrrollo.Services;
 
 
-import com.example.desrrollo.Api.LineaRegistroTransaccionProductoDTO;
-import com.example.desrrollo.Api.ProductoUnidadMedidaInventarioDTO;
-import com.example.desrrollo.Api.ProductoUnidadMedidaListaExistenteDTO;
-import com.example.desrrollo.Api.ProductoUnidadMedidaListaPrecioDTO;
+import com.example.desrrollo.Api.*;
 import com.example.desrrollo.Repository.RepositoryLineaRegistroProducto;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
@@ -24,8 +21,15 @@ public class ReporteService{
         JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(listDto);
         File file = ResourceUtils.getFile("classpath:Reportes/" + jrxmlFileName + ".jrxml");
         JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
-        Map<String, Object> parameters = new HashMap<>();
         JasperPrint report = JasperFillManager.fillReport(jasperReport, null, dataSource);
+        return report;
+    }
+    private JasperPrint getReportWithParameters(List<?> listDto, String jrxmlFileName,Map<String, Object> parameters ,String nombre) throws FileNotFoundException, JRException {
+        JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(listDto);
+        File file = ResourceUtils.getFile("classpath:Reportes/" + jrxmlFileName + ".jrxml");
+        JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
+        parameters.put("nombre", nombre);
+        JasperPrint report = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
         return report;
     }
 
@@ -42,6 +46,11 @@ public class ReporteService{
     }
     public byte[] exportToInventarioValorizadoPdf(List<ProductoUnidadMedidaInventarioDTO> list) throws JRException, FileNotFoundException {
         return JasperExportManager.exportReportToPdf(getReport(list, "InventarioValorizado"));
+    }
+    public byte[] exportToLineaProductoPdf(List<ProductoLineaProductoDTO> list ,String nombre) throws JRException, FileNotFoundException {
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put("nombre",nombre);
+        return JasperExportManager.exportReportToPdf(getReportWithParameters(list,"LineaProducto",parameters,nombre));
     }
 
 }

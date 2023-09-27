@@ -58,4 +58,6 @@ public class ControllerProducto {
             ,@PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)LocalDateTime fechaFinal){
         return repositoryRegistroTransacion.findAllByFechaEntarda(fechaInicial,fechaFinal);
     }
+
+
 }

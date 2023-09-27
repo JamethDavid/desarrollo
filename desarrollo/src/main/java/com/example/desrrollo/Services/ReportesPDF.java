@@ -1,5 +1,6 @@
 package com.example.desrrollo.Services;
 
+import com.example.desrrollo.Api.ProductoLineaProductoDTO;
 import com.example.desrrollo.Repository.RepositoryLineaRegistroProducto;
 import com.example.desrrollo.Repository.RepositoryProducto;
 import net.sf.jasperreports.engine.JRException;
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.FileNotFoundException;
+import java.util.List;
 
 @Service
 public class ReportesPDF  implements  IReporteService{
@@ -26,6 +28,12 @@ public class ReportesPDF  implements  IReporteService{
     public byte[] exportToInventarioValorizadoPdf() throws JRException, FileNotFoundException {
         return reporteService.exportToInventarioValorizadoPdf(repositoryProducto.findAllProductoUnidadMedidaInventarioValorizadoDTO());
     }
+
+    @Override
+    public byte[] exportToLineaProductoPdf(String nombre) throws JRException, FileNotFoundException {
+        return reporteService.exportToLineaProductoPdf(repositoryProducto.findAllByNombre(nombre),nombre);
+    }
+
 
     @Override
     public byte[] exportPdf() throws JRException, FileNotFoundException {

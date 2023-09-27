@@ -1,5 +1,6 @@
 package com.example.desrrollo.Services;
 
+import com.example.desrrollo.Api.ProductoLineaProductoDTO;
 import com.example.desrrollo.Api.ProductoUnidadMedidaListaPrecioDTO;
 import net.sf.jasperreports.engine.JRException;
 
@@ -11,5 +12,7 @@ public interface IReporteService {
     byte[] exportToListaPrecioPdf() throws JRException, FileNotFoundException;
     byte[] exportToListaExistentePdf() throws JRException, FileNotFoundException;
     byte[] exportToInventarioValorizadoPdf() throws JRException, FileNotFoundException;
+    byte[] exportToLineaProductoPdf(String nombre) throws JRException, FileNotFoundException;
+
 
 }

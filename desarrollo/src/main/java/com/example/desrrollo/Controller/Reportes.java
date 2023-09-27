@@ -41,5 +41,13 @@ private  IReporteService IreporteService;
         return ResponseEntity.ok().headers(headers).body(IreporteService.exportToInventarioValorizadoPdf());
     }
 
+    @GetMapping("/lista-producto-pdf/{nombre}")
+    public ResponseEntity<byte[]> exportToListaProductoPdf(@PathVariable String nombre) throws JRException, FileNotFoundException {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_PDF);
+        return ResponseEntity.ok().headers(headers).body(IreporteService.exportToLineaProductoPdf(nombre));
+    }
+
+
 
 }
