@@ -1,9 +1,11 @@
 package com.example.desrrollo.Controller;
 
 import com.example.desrrollo.Api.*;
+import com.example.desrrollo.Entity.Producto;
 import com.example.desrrollo.Repository.RepositoryKardex;
 import com.example.desrrollo.Repository.RepositoryProducto;
 import com.example.desrrollo.Repository.RepositoryRegistroTransacion;
+import com.example.desrrollo.Services.IserviceQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +20,8 @@ import java.util.List;
 @RequestMapping("/producto")
 public class ControllerProducto {
 
+    @Autowired
+    private IserviceQuery iserviceQuery;
     @Autowired
     private RepositoryProducto repositoryProducto;
     @Autowired
@@ -59,5 +63,8 @@ public class ControllerProducto {
         return repositoryRegistroTransacion.findAllByFechaEntarda(fechaInicial,fechaFinal);
     }
 
-
+    @GetMapping("/linea-producto")
+    public List<ProductoNombreDTO> getProductoLineaDTO(){
+        return iserviceQuery.findAllByName();
+    }
 }

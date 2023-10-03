@@ -21,6 +21,7 @@ public interface RepositoryLineaRegistroProducto extends JpaRepository<LineaRegi
 """)
     List<LineaRegistroTransaccionProductoDTO>findAllByDTO();
 
+
 }
 
 
