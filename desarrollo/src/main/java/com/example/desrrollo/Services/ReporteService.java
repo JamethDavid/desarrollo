@@ -11,6 +11,10 @@ import org.springframework.util.ResourceUtils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -51,6 +55,13 @@ public class ReporteService{
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("nombre",nombre);
         return JasperExportManager.exportReportToPdf(getReportWithParameters(list,"LineaProducto",parameters,nombre));
+    }
+    public byte[] exportToEntradaInventarioPdf(List<ProductoLineaProductoDTO> list, LocalDateTime fechaInicio, LocalDateTime fechaFinal) throws JRException, FileNotFoundException {
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put("fechaInical", fechaInicio);
+        parameters.put("fechaFinal", fechaFinal);
+
+        return JasperExportManager.exportReportToPdf(getReportWithParameters(list, "InventarioEntrada", parameters, fechaInicio));
     }
 
 }
