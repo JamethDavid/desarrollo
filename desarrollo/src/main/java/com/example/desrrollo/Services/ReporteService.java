@@ -37,6 +37,17 @@ public class ReporteService{
         return report;
     }
 
+    private JasperPrint getReportWithParametersFecha(List<?> listDto, String jrxmlFileName,Map<String, Object> parameters ,LocalDateTime fechaIncio, LocalDateTime fechaFinal) throws FileNotFoundException, JRException {
+        JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(listDto);
+        File file = ResourceUtils.getFile("classpath:Reportes/" + jrxmlFileName + ".jrxml");
+        JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
+        parameters.put("fechaInicio",fechaIncio);
+        parameters.put("fechaFinal",fechaFinal );
+
+        JasperPrint report = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
+        return report;
+    }
+
     public byte[] exportToPdf(List<LineaRegistroTransaccionProductoDTO> list) throws JRException, FileNotFoundException {
         return JasperExportManager.exportReportToPdf(getReport(list, "AuxilioInventario"));
     }
@@ -56,13 +67,14 @@ public class ReporteService{
         parameters.put("nombre",nombre);
         return JasperExportManager.exportReportToPdf(getReportWithParameters(list,"LineaProducto",parameters,nombre));
     }
-    public byte[] exportToEntradaInventarioPdf(List<ProductoLineaProductoDTO> list, LocalDateTime fechaInicio, LocalDateTime fechaFinal) throws JRException, FileNotFoundException {
+    public byte[] exportToEntradaInventarioPdf(List<RegistroTransaccionInformeEntradaInventarioDTO> list, LocalDateTime fechaInicio, LocalDateTime fechaFinal) throws JRException, FileNotFoundException {
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("fechaInical", fechaInicio);
         parameters.put("fechaFinal", fechaFinal);
 
-        return JasperExportManager.exportReportToPdf(getReportWithParameters(list, "InventarioEntrada", parameters, fechaInicio));
+        return JasperExportManager.exportReportToPdf(getReportWithParametersFecha(list, "EntradaDeInventario", parameters, fechaInicio,fechaFinal));
     }
+
 
 }
 

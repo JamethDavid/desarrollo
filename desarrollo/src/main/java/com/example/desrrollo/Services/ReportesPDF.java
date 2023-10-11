@@ -3,11 +3,13 @@ package com.example.desrrollo.Services;
 import com.example.desrrollo.Api.ProductoLineaProductoDTO;
 import com.example.desrrollo.Repository.RepositoryLineaRegistroProducto;
 import com.example.desrrollo.Repository.RepositoryProducto;
+import com.example.desrrollo.Repository.RepositoryRegistroTransacion;
 import net.sf.jasperreports.engine.JRException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.FileNotFoundException;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -18,6 +20,8 @@ public class ReportesPDF  implements  IReporteService{
     private RepositoryLineaRegistroProducto repositoryLineaRegistroProducto;
     @Autowired
     private ReporteService reporteService;
+    @Autowired
+    private RepositoryRegistroTransacion repositoryRegistroTransacion;
 
 
     public byte[] exportToListaExistentePdf() throws JRException, FileNotFoundException {
@@ -34,6 +38,10 @@ public class ReportesPDF  implements  IReporteService{
         return reporteService.exportToLineaProductoPdf(repositoryProducto.findAllByNombre(nombre),nombre);
     }
 
+    @Override
+    public byte[] exportToEntradaInventarioPdf(LocalDateTime fechaInicio, LocalDateTime fechaFinal) throws JRException, FileNotFoundException {
+        return reporteService.exportToEntradaInventarioPdf(repositoryRegistroTransacion.findAllByFechaEntarda(fechaInicio,fechaFinal),fechaInicio,fechaFinal);
+    }
 
     @Override
     public byte[] exportPdf() throws JRException, FileNotFoundException {

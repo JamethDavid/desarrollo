@@ -5,6 +5,7 @@ import com.example.desrrollo.Api.ProductoUnidadMedidaListaPrecioDTO;
 import net.sf.jasperreports.engine.JRException;
 
 import java.io.FileNotFoundException;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public interface IReporteService {
@@ -13,6 +14,7 @@ public interface IReporteService {
     byte[] exportToListaExistentePdf() throws JRException, FileNotFoundException;
     byte[] exportToInventarioValorizadoPdf() throws JRException, FileNotFoundException;
     byte[] exportToLineaProductoPdf(String nombre) throws JRException, FileNotFoundException;
+    byte[] exportToEntradaInventarioPdf(LocalDateTime fechaInicio, LocalDateTime fechaFinal) throws JRException, FileNotFoundException;
 
 
 }

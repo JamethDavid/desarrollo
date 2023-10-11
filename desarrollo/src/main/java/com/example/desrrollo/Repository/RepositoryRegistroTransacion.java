@@ -19,7 +19,7 @@ public interface RepositoryRegistroTransacion extends JpaRepository<RegistroTran
     @Query("""
     SELECT NEW com.example.desrrollo.Api.RegistroTransaccionInformeSalidaInventarioDTO(rt.consecutivoGravado,rt.fecha,rt.total)
     FROM registro_transaccion rt
-    where rt.consecutivoGravado like 'SI%'
+    where rt.consecutivoGravado like '%'
     and rt.fecha>=:fechaInicial and rt.fecha<=:fechaFinal
     ORDER BY rt.fecha
 
@@ -28,7 +28,7 @@ public interface RepositoryRegistroTransacion extends JpaRepository<RegistroTran
     @Query("""
     SELECT NEW com.example.desrrollo.Api.RegistroTransaccionInformeEntradaInventarioDTO(rt.consecutivoGravado,rt.fecha,rt.total)
     FROM registro_transaccion rt
-    where rt.consecutivoGravado like 'EN%'
+    where rt.consecutivoGravado like '%'
     and rt.fecha>=:fechaInicial and rt.fecha<=:fechaFinal
     ORDER BY rt.fecha
 

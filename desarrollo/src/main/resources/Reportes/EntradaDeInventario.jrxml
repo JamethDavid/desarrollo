@@ -29,7 +29,7 @@
                 <textElement textAlignment="Center" verticalAlignment="Middle">
                     <font size="19" isBold="true"/>
                 </textElement>
-                <text><![CDATA[Auxilio Inventarios]]></text>
+                <text><![CDATA[Inventario Entrada]]></text>
             </staticText>
         </band>
     </title>
@@ -39,7 +39,7 @@
     <columnHeader>
         <band height="51" splitType="Stretch">
             <staticText>
-                <reportElement x="20" y="10" width="49" height="19" uuid="73fc7e14-58bd-4ba2-a1ef-536c4b566c61"/>
+                <reportElement x="20" y="10" width="54" height="19" uuid="73fc7e14-58bd-4ba2-a1ef-536c4b566c61"/>
                 <text><![CDATA[consecutivo]]></text>
             </staticText>
             <staticText>
@@ -48,7 +48,7 @@
             </staticText>
             <staticText>
                 <reportElement x="170" y="10" width="49" height="19" uuid="bc0c8f76-63c4-4cff-bfa7-118794805ee2"/>
-                <text><![CDATA[registro total]]></text>
+                <text><![CDATA[total]]></text>
             </staticText>
             <line>
                 <reportElement x="-3" y="0" width="560" height="1" uuid="3927ee6d-e666-4188-94c3-f4b653a2972f"/>
