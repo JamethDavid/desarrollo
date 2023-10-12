@@ -58,6 +58,12 @@ private  IReporteService IreporteService;
         headers.setContentType(MediaType.APPLICATION_PDF);
         return ResponseEntity.ok().headers(headers).body(IreporteService.exportToEntradaInventarioPdf(fechaInicio,fechaFinal));
     }
+    @GetMapping("/reporte-kardex-pdf/{idVendedor}")
+    public ResponseEntity<byte[]> exportToKardex(@PathVariable String idVendedor) throws JRException, FileNotFoundException {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_PDF);
+        return ResponseEntity.ok().headers(headers).body(IreporteService.exportToKardexPdf(idVendedor));
+    }
 
 
 

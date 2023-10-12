@@ -44,6 +44,11 @@ public class ReportesPDF  implements  IReporteService{
     }
 
     @Override
+    public byte[] exportToKardexPdf(String idVendedor) throws JRException, FileNotFoundException {
+        return reporteService.exportToKardexPdf(repositoryProducto.findAllByIdKardex(idVendedor),idVendedor);
+    }
+
+    @Override
     public byte[] exportPdf() throws JRException, FileNotFoundException {
         return reporteService.exportToPdf(repositoryLineaRegistroProducto.findAllByDTO());
     }

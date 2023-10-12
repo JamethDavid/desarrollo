@@ -1,8 +1,8 @@
 package com.example.desrrollo.Controller;
 
 import com.example.desrrollo.Api.*;
-import com.example.desrrollo.Entity.Producto;
-import com.example.desrrollo.Repository.RepositoryKardex;
+import com.example.desrrollo.Query.KardexReferenciaDTO;
+import com.example.desrrollo.Query.ProductoNombreDTO;
 import com.example.desrrollo.Repository.RepositoryProducto;
 import com.example.desrrollo.Repository.RepositoryRegistroTransacion;
 import com.example.desrrollo.Services.IserviceQuery;
@@ -62,9 +62,12 @@ public class ControllerProducto {
             ,@PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)LocalDateTime fechaFinal){
         return repositoryRegistroTransacion.findAllByFechaEntarda(fechaInicial,fechaFinal);
     }
-
     @GetMapping("/linea-producto")
     public List<ProductoNombreDTO> getProductoLineaDTO(){
+
         return iserviceQuery.findAllByName();
     }
+    @GetMapping("/lista-Kardex")
+    public List<KardexReferenciaDTO> getKardex(){
+        return iserviceQuery.findAllByNameKardexDtos(); }
 }

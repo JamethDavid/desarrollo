@@ -2,6 +2,7 @@ package com.example.desrrollo.Repository;
 
 import com.example.desrrollo.Api.*;
 import com.example.desrrollo.Entity.Producto;
+import com.example.desrrollo.Query.KardexReferenciaDTO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -50,6 +51,11 @@ public interface RepositoryProducto extends JpaRepository<Producto,String> {
     List<ProductoLineaProductoDTO>findAllByNombre(String nombre);
 
 
+    @Query("""
+    SELECT NEW com.example.desrrollo.Query.KardexReferenciaDTO(p.idProducto ,p.nombre)
+    FROM producto p
+""")
+    List<KardexReferenciaDTO>findAllByIVendedorKardex();
 }
 
 

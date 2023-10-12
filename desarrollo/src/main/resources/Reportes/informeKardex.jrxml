@@ -1,0 +1,183 @@
+<!-- Created with Jaspersoft Studio version 6.20.5.final using JasperReports Library version 6.20.5-3efcf2e67f959db3888d79f73dde2dbd7acb4f8e  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Reports" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f5615c8c-88e5-466b-81be-8ffc4278f8d1">
+    <property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+    <property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter"/>
+    <parameter name="idVendedor" class="java.time.LocalDateTime"/>
+    <field name="fecha" class="java.time.LocalDateTime">
+        <property name="com.jaspersoft.studio.field.name" value="fecha"/>
+        <property name="com.jaspersoft.studio.field.label" value="fecha"/>
+        <property name="com.jaspersoft.studio.field.tree.path" value="registro_transaccion"/>
+    </field>
+    <field name="detalle" class="java.lang.String">
+        <property name="com.jaspersoft.studio.field.name" value="id_transaccion"/>
+        <property name="com.jaspersoft.studio.field.label" value="transaccion"/>
+        <property name="com.jaspersoft.studio.field.tree.path" value="transaccion"/>
+    </field>
+    <field name="valorUnitario" class="java.math.BigDecimal">
+        <property name="com.jaspersoft.studio.field.name" value="descripcion"/>
+        <property name="com.jaspersoft.studio.field.label" value="descripcion"/>
+        <property name="com.jaspersoft.studio.field.tree.path" value="registro_transaccion"/>
+    </field>
+    <field name="cantidadEntrada" class="java.math.BigDecimal">
+        <property name="com.jaspersoft.studio.field.name" value="descripcion"/>
+        <property name="com.jaspersoft.studio.field.label" value="descripcion"/>
+        <property name="com.jaspersoft.studio.field.tree.path" value="registro_transaccion"/>
+    </field>
+    <field name="valorEntrada" class="java.math.BigDecimal">
+        <property name="com.jaspersoft.studio.field.name" value="descripcion"/>
+        <property name="com.jaspersoft.studio.field.label" value="descripcion"/>
+        <property name="com.jaspersoft.studio.field.tree.path" value="registro_transaccion"/>
+    </field>
+    <field name="valorSalida" class="java.math.BigDecimal">
+        <property name="com.jaspersoft.studio.field.name" value="descripcion"/>
+        <property name="com.jaspersoft.studio.field.label" value="descripcion"/>
+        <property name="com.jaspersoft.studio.field.tree.path" value="registro_transaccion"/>
+    </field>
+    <field name="cantidadSaldo" class="java.math.BigDecimal">
+        <property name="com.jaspersoft.studio.field.name" value="descripcion"/>
+        <property name="com.jaspersoft.studio.field.label" value="descripcion"/>
+        <property name="com.jaspersoft.studio.field.tree.path" value="registro_transaccion"/>
+    </field>
+    <field name="valorSaldo" class="java.math.BigDecimal">
+        <property name="com.jaspersoft.studio.field.name" value="descripcion"/>
+        <property name="com.jaspersoft.studio.field.label" value="descripcion"/>
+        <property name="com.jaspersoft.studio.field.tree.path" value="registro_transaccion"/>
+    </field>
+    <field name="ubica" class="java.lang.Integer">
+        <property name="com.jaspersoft.studio.field.name" value="descripcion"/>
+        <property name="com.jaspersoft.studio.field.label" value="descripcion"/>
+        <property name="com.jaspersoft.studio.field.tree.path" value="registro_transaccion"/>
+    </field>
+    <field name="documento" class="java.lang.String">
+        <property name="com.jaspersoft.studio.field.name" value="descripcion"/>
+        <property name="com.jaspersoft.studio.field.label" value="descripcion"/>
+        <property name="com.jaspersoft.studio.field.tree.path" value="registro_transaccion"/>
+    </field>
+    <background>
+        <band splitType="Stretch"/>
+    </background>
+    <title>
+        <band height="79" splitType="Stretch">
+            <staticText>
+                <reportElement x="0" y="0" width="560" height="79" uuid="8efefff8-d7c9-4fc6-9337-c68fc522bada"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="19" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Reporte Kardex]]></text>
+            </staticText>
+        </band>
+    </title>
+    <pageHeader>
+        <band height="35" splitType="Stretch"/>
+    </pageHeader>
+    <columnHeader>
+        <band height="51" splitType="Stretch">
+            <staticText>
+                <reportElement x="20" y="10" width="54" height="19" uuid="73fc7e14-58bd-4ba2-a1ef-536c4b566c61"/>
+                <text><![CDATA[fecha]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="100" y="10" width="49" height="19" uuid="413be433-d8ef-497a-893f-3009ec9f6b39"/>
+                <text><![CDATA[detalle]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="170" y="10" width="60" height="19" uuid="bc0c8f76-63c4-4cff-bfa7-118794805ee2"/>
+                <text><![CDATA[Doc#]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="240" y="10" width="70" height="19" uuid="bc0c8f76-63c4-4cff-bfa7-118794805ee2"/>
+                <text><![CDATA[Vlr Unitario]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="310" y="10" width="80" height="19" uuid="bc0c8f76-63c4-4cff-bfa7-118794805ee2"/>
+                <text><![CDATA[# Entradas]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="380" y="10" width="90" height="19" uuid="bc0c8f76-63c4-4cff-bfa7-118794805ee2"/>
+                <text><![CDATA[Vlr Entrada]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="450" y="10" width="100" height="19" uuid="bc0c8f76-63c4-4cff-bfa7-118794805ee2"/>
+                <text><![CDATA[# Salida]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="520" y="10" width="110" height="19" uuid="bc0c8f76-63c4-4cff-bfa7-118794805ee2"/>
+                <text><![CDATA[Vlr Salida]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="600" y="10" width="120" height="19" uuid="bc0c8f76-63c4-4cff-bfa7-118794805ee2"/>
+                <text><![CDATA[#Saldo]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="670" y="10" width="130" height="19" uuid="bc0c8f76-63c4-4cff-bfa7-118794805ee2"/>
+                <text><![CDATA[Vlr Saldo]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="740" y="10" width="140" height="19" uuid="bc0c8f76-63c4-4cff-bfa7-118794805ee2"/>
+                <text><![CDATA[Ubicacion]]></text>
+            </staticText>
+            <line>
+                <reportElement x="-3" y="0" width="560" height="1" uuid="3927ee6d-e666-4188-94c3-f4b653a2972f"/>
+            </line>
+            <line>
+                <reportElement x="0" y="41" width="560" height="1" uuid="9242e484-68ee-4460-9b77-fa6ea7a2ddac"/>
+            </line>
+        </band>
+    </columnHeader>
+    <detail>
+        <band height="51" splitType="Stretch">
+            <textField>
+                <reportElement x="0" y="20" width="61" height="30" uuid="01eab3b3-335e-43bc-8a35-7bf8feebc98e"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="80" y="20" width="70" height="30" uuid="f60a75e8-ec99-436c-a962-0e70b8b937f8"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$F{detalle}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="150" y="20" width="100" height="30" uuid="e6be2f0e-b35f-4ec2-a526-f713b1793421"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$F{documento}]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement x="170" y="10" width="110" height="19" uuid="bc0c8f76-63c4-4cff-bfa7-118794805ee2"/>
+                <text><![CDATA[valorUnitario]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="240" y="10" width="120" height="19" uuid="bc0c8f76-63c4-4cff-bfa7-118794805ee2"/>
+                <text><![CDATA[{cantidadEntrada}]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="260" y="10" width="130" height="19" uuid="bc0c8f76-63c4-4cff-bfa7-118794805ee2"/>
+                <text><![CDATA[{valorEntrada}]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="300" y="10" width="140" height="19" uuid="bc0c8f76-63c4-4cff-bfa7-118794805ee2"/>
+                <text><![CDATA[{valorSalida}]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="340" y="10" width="150" height="19" uuid="bc0c8f76-63c4-4cff-bfa7-118794805ee2"/>
+                <text><![CDATA[{cantidadSaldo}]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="380" y="10" width="170" height="19" uuid="bc0c8f76-63c4-4cff-bfa7-118794805ee2"/>
+                <text><![CDATA[{valorSaldo}]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="420" y="10" width="400" height="19" uuid="bc0c8f76-63c4-4cff-bfa7-118794805ee2"/>
+                <text><![CDATA[{ubica}]]></text>
+            </staticText>
+        </band>
+    </detail>
+    <columnFooter>
+        <band height="45" splitType="Stretch"/>
+    </columnFooter>
+    <pageFooter>
+        <band height="54" splitType="Stretch"/>
+    </pageFooter>
+    <summary>
+        <band height="42" splitType="Stretch"/>
+    </summary>
+</jasperReport>

@@ -75,6 +75,11 @@ public class ReporteService{
         return JasperExportManager.exportReportToPdf(getReportWithParametersFecha(list, "EntradaDeInventario", parameters, fechaInicio,fechaFinal));
     }
 
+    public byte[] exportToKardexPdf(List<KardexDTO> list ,String idVendedor) throws JRException, FileNotFoundException {
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put("idVendedor",idVendedor);
+        return JasperExportManager.exportReportToPdf(getReportWithParameters(list,"informeKardex",parameters,idVendedor));
+    }
 
 }
 

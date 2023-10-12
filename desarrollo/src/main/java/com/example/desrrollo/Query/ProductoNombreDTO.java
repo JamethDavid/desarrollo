@@ -1,4 +1,4 @@
-package com.example.desrrollo.Api;
+package com.example.desrrollo.Query;
 
 public class ProductoNombreDTO {
     private String nombre;
