@@ -58,6 +58,14 @@ private  IReporteService IreporteService;
         headers.setContentType(MediaType.APPLICATION_PDF);
         return ResponseEntity.ok().headers(headers).body(IreporteService.exportToEntradaInventarioPdf(fechaInicio,fechaFinal));
     }
+    @GetMapping("/salida-inventario-pdf/{fechaInicio}/{fechaFinal}")
+    public ResponseEntity<byte[]> exportToSalidaInventario(
+            @PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime fechaInicio
+            ,@PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)LocalDateTime fechaFinal) throws JRException, FileNotFoundException {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_PDF);
+        return ResponseEntity.ok().headers(headers).body(IreporteService.exportToSalidaInventarioPdf(fechaInicio,fechaFinal));
+    }
     @GetMapping("/reporte-kardex-pdf/{idVendedor}")
     public ResponseEntity<byte[]> exportToKardex(@PathVariable String idVendedor) throws JRException, FileNotFoundException {
         HttpHeaders headers = new HttpHeaders();

@@ -71,8 +71,13 @@ public class ReporteService{
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("fechaInical", fechaInicio);
         parameters.put("fechaFinal", fechaFinal);
-
         return JasperExportManager.exportReportToPdf(getReportWithParametersFecha(list, "EntradaDeInventario", parameters, fechaInicio,fechaFinal));
+    }
+    public byte[] exportToSalidaInventarioPdf(List<RegistroTransaccionInformeSalidaInventarioDTO> list, LocalDateTime fechaInicio, LocalDateTime fechaFinal) throws JRException, FileNotFoundException {
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put("fechaInical", fechaInicio);
+        parameters.put("fechaFinal", fechaFinal);
+        return JasperExportManager.exportReportToPdf(getReportWithParametersFecha(list, "SalidaDeInventario", parameters, fechaInicio,fechaFinal));
     }
 
     public byte[] exportToKardexPdf(List<KardexDTO> list ,String idVendedor) throws JRException, FileNotFoundException {
