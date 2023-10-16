@@ -16,6 +16,7 @@ public interface IReporteService {
     byte[] exportToLineaProductoPdf(String nombre) throws JRException, FileNotFoundException;
     byte[] exportToEntradaInventarioPdf(LocalDateTime fechaInicio, LocalDateTime fechaFinal) throws JRException, FileNotFoundException;
     byte[] exportToSalidaInventarioPdf(LocalDateTime fechaInicio, LocalDateTime fechaFinal) throws JRException, FileNotFoundException;
+    byte[] exportToRentabilidadPdf(LocalDateTime fechaInicio, LocalDateTime fechaFinal) throws JRException, FileNotFoundException;
     byte[] exportToKardexPdf(String idVendedor) throws JRException, FileNotFoundException;
 
 

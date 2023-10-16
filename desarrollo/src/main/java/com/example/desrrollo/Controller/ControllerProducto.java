@@ -62,6 +62,13 @@ public class ControllerProducto {
             ,@PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)LocalDateTime fechaFinal){
         return repositoryRegistroTransacion.findAllByFechaEntarda(fechaInicial,fechaFinal);
     }
+
+    @GetMapping("/rentabilidad-producto/{fechaInicial}/{fechaFinal}")
+    public List<ProductoRentabilidadDTO> getProductoRentabilidadDTO(
+            @PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime fechaInicial
+            ,@PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)LocalDateTime fechaFinal){
+        return repositoryProducto.findAllByFechaRentabilidad(fechaInicial,fechaFinal);
+    }
     @GetMapping("/linea-producto")
     public List<ProductoNombreDTO> getProductoLineaDTO(){
 

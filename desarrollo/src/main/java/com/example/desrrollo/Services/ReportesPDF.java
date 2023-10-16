@@ -47,6 +47,12 @@ public class ReportesPDF  implements  IReporteService{
     public byte[] exportToSalidaInventarioPdf(LocalDateTime fechaInicio, LocalDateTime fechaFinal) throws JRException, FileNotFoundException {
         return reporteService.exportToSalidaInventarioPdf(repositoryRegistroTransacion.findAllByFechaSalida(fechaInicio,fechaFinal),fechaInicio,fechaFinal);
     }
+
+    @Override
+    public byte[] exportToRentabilidadPdf(LocalDateTime fechaInicio, LocalDateTime fechaFinal) throws JRException, FileNotFoundException {
+        return reporteService.exportToRentabilidadPdf(repositoryProducto.findAllByFechaRentabilidad(fechaInicio,fechaFinal),fechaInicio,fechaFinal);
+    }
+
     @Override
     public byte[] exportToKardexPdf(String idVendedor) throws JRException, FileNotFoundException {
         return reporteService.exportToKardexPdf(repositoryProducto.findAllByIdKardex(idVendedor),idVendedor);

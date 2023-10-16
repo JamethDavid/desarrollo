@@ -13,7 +13,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.time.LocalDateTime;
 
-@CrossOrigin(origins = {"http://localhost:4200"})
 @RestController
 @RequestMapping("/api")
 public class Reportes {
@@ -65,6 +64,14 @@ private  IReporteService IreporteService;
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_PDF);
         return ResponseEntity.ok().headers(headers).body(IreporteService.exportToSalidaInventarioPdf(fechaInicio,fechaFinal));
+    }
+    @GetMapping("/producto-rentabilidad-pdf/{fechaInicio}/{fechaFinal}")
+    public ResponseEntity<byte[]> exportToRentabilidad(
+            @PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime fechaInicio
+            ,@PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)LocalDateTime fechaFinal) throws JRException, FileNotFoundException {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_PDF);
+        return ResponseEntity.ok().headers(headers).body(IreporteService.exportToRentabilidadPdf(fechaInicio,fechaFinal));
     }
     @GetMapping("/reporte-kardex-pdf/{idVendedor}")
     public ResponseEntity<byte[]> exportToKardex(@PathVariable String idVendedor) throws JRException, FileNotFoundException {
