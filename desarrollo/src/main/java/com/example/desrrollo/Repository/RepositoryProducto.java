@@ -35,7 +35,7 @@ public interface RepositoryProducto extends JpaRepository<Producto,String> {
     List<ProductoUnidadMedidaInventarioDTO>findAllProductoUnidadMedidaInventarioValorizadoDTO();
     @Query("""
     SELECT NEW com.example.desrrollo.Api.KardexDTO(k.idKardex,k.fecha,k.detalle,k.valorUnitario,
-    k.cantidadEntrada,k.valorEntrada,k.valorSaldo,
+    k.cantidadEntrada,k.valorEntrada,k.cantidadSalida,k.valorSalida,
     k.cantidadSaldo,k.valorSaldo,k.ubica,k.documento)
     FROM kardex k where k.producto.idProducto =:idVendedor
 """)
@@ -54,6 +54,7 @@ public interface RepositoryProducto extends JpaRepository<Producto,String> {
     @Query("""
     SELECT NEW com.example.desrrollo.Query.KardexReferenciaDTO(p.idProducto ,p.nombre)
     FROM producto p
+    ORDER BY p.nombre
 """)
     List<KardexReferenciaDTO>findAllByIVendedorKardex();
 

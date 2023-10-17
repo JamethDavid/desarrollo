@@ -13,6 +13,7 @@ public class KardexDTO {
     private BigDecimal valorUnitario;
     private BigDecimal cantidadEntrada;
     private BigDecimal valorEntrada;
+    private BigDecimal cantidadSalida;
     private BigDecimal valorSalida;
     private BigDecimal cantidadSaldo;
     private BigDecimal valorSaldo;
@@ -24,7 +25,7 @@ public class KardexDTO {
 
     public KardexDTO(Long idKardex, LocalDateTime fecha,
                      String detalle, BigDecimal valorUnitario,
-                     BigDecimal cantidadEntrada, BigDecimal valorEntrada,
+                     BigDecimal cantidadEntrada, BigDecimal valorEntrada,BigDecimal cantidadSalida,
                      BigDecimal valorSalida, BigDecimal cantidadSaldo,
                      BigDecimal valorSaldo, Integer ubica, String documento) {
         this.idKardex = idKardex;
@@ -33,6 +34,7 @@ public class KardexDTO {
         this.valorUnitario = valorUnitario;
         this.cantidadEntrada = cantidadEntrada;
         this.valorEntrada = valorEntrada;
+        this.cantidadSalida = cantidadSalida;
         this.valorSalida = valorSalida;
         this.cantidadSaldo = cantidadSaldo;
         this.valorSaldo = valorSaldo;
@@ -40,6 +42,12 @@ public class KardexDTO {
         this.documento = documento;
     }
 
+    public void setCantidadSalida(BigDecimal cantidadSalida) {
+        this.cantidadSalida = cantidadSalida;
+    }
+    public BigDecimal getCantidadSalida() {
+        return cantidadSalida;
+    }
     public Long getIdKardex() {
         return idKardex;
     }

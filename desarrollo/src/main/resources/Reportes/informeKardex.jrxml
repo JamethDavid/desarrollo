@@ -28,6 +28,11 @@
         <property name="com.jaspersoft.studio.field.label" value="descripcion"/>
         <property name="com.jaspersoft.studio.field.tree.path" value="registro_transaccion"/>
     </field>
+    <field name="cantidadSalida" class="java.math.BigDecimal">
+        <property name="com.jaspersoft.studio.field.name" value="descripcion"/>
+        <property name="com.jaspersoft.studio.field.label" value="descripcion"/>
+        <property name="com.jaspersoft.studio.field.tree.path" value="registro_transaccion"/>
+    </field>
     <field name="valorSalida" class="java.math.BigDecimal">
         <property name="com.jaspersoft.studio.field.name" value="descripcion"/>
         <property name="com.jaspersoft.studio.field.label" value="descripcion"/>
@@ -77,43 +82,43 @@
                 <text><![CDATA[fecha]]></text>
             </staticText>
             <staticText>
-                <reportElement x="100" y="10" width="49" height="19" uuid="413be433-d8ef-497a-893f-3009ec9f6b39"/>
+                <reportElement x="50" y="10" width="49" height="19" uuid="413be433-d8ef-497a-893f-3009ec9f6b39"/>
                 <text><![CDATA[detalle]]></text>
             </staticText>
             <staticText>
-                <reportElement x="170" y="10" width="60" height="19" uuid="bc0c8f76-63c4-4cff-bfa7-118794805ee2"/>
+                <reportElement x="100" y="10" width="60" height="19" uuid="bc0c8f76-63c4-4cff-bfa7-118794805ee2"/>
                 <text><![CDATA[Doc#]]></text>
             </staticText>
             <staticText>
-                <reportElement x="240" y="10" width="70" height="19" uuid="bc0c8f76-63c4-4cff-bfa7-118794805ee2"/>
+                <reportElement x="150" y="10" width="70" height="19" uuid="bc0c8f76-63c4-4cff-bfa7-118794805ee2"/>
                 <text><![CDATA[Vlr Unitario]]></text>
             </staticText>
             <staticText>
-                <reportElement x="310" y="10" width="80" height="19" uuid="bc0c8f76-63c4-4cff-bfa7-118794805ee2"/>
+                <reportElement x="200" y="10" width="80" height="19" uuid="bc0c8f76-63c4-4cff-bfa7-118794805ee2"/>
                 <text><![CDATA[# Entradas]]></text>
             </staticText>
             <staticText>
-                <reportElement x="380" y="10" width="90" height="19" uuid="bc0c8f76-63c4-4cff-bfa7-118794805ee2"/>
+                <reportElement x="250" y="10" width="90" height="19" uuid="bc0c8f76-63c4-4cff-bfa7-118794805ee2"/>
                 <text><![CDATA[Vlr Entrada]]></text>
             </staticText>
             <staticText>
-                <reportElement x="450" y="10" width="100" height="19" uuid="bc0c8f76-63c4-4cff-bfa7-118794805ee2"/>
+                <reportElement x="300" y="10" width="100" height="19" uuid="bc0c8f76-63c4-4cff-bfa7-118794805ee2"/>
                 <text><![CDATA[# Salida]]></text>
             </staticText>
             <staticText>
-                <reportElement x="520" y="10" width="110" height="19" uuid="bc0c8f76-63c4-4cff-bfa7-118794805ee2"/>
+                <reportElement x="350" y="10" width="110" height="19" uuid="bc0c8f76-63c4-4cff-bfa7-118794805ee2"/>
                 <text><![CDATA[Vlr Salida]]></text>
             </staticText>
             <staticText>
-                <reportElement x="600" y="10" width="120" height="19" uuid="bc0c8f76-63c4-4cff-bfa7-118794805ee2"/>
+                <reportElement x="400" y="10" width="120" height="19" uuid="bc0c8f76-63c4-4cff-bfa7-118794805ee2"/>
                 <text><![CDATA[#Saldo]]></text>
             </staticText>
             <staticText>
-                <reportElement x="670" y="10" width="130" height="19" uuid="bc0c8f76-63c4-4cff-bfa7-118794805ee2"/>
+                <reportElement x="450" y="10" width="130" height="19" uuid="bc0c8f76-63c4-4cff-bfa7-118794805ee2"/>
                 <text><![CDATA[Vlr Saldo]]></text>
             </staticText>
             <staticText>
-                <reportElement x="740" y="10" width="140" height="19" uuid="bc0c8f76-63c4-4cff-bfa7-118794805ee2"/>
+                <reportElement x="500" y="10" width="140" height="19" uuid="bc0c8f76-63c4-4cff-bfa7-118794805ee2"/>
                 <text><![CDATA[Ubicacion]]></text>
             </staticText>
             <line>
@@ -137,38 +142,50 @@
                 <textFieldExpression><![CDATA[$F{detalle}]]></textFieldExpression>
             </textField>
             <textField>
-                <reportElement x="150" y="20" width="100" height="30" uuid="e6be2f0e-b35f-4ec2-a526-f713b1793421"/>
+                <reportElement x="130" y="20" width="100" height="30" uuid="e6be2f0e-b35f-4ec2-a526-f713b1793421"/>
                 <textElement textAlignment="Center" verticalAlignment="Middle"/>
                 <textFieldExpression><![CDATA[$F{documento}]]></textFieldExpression>
             </textField>
-            <staticText>
-                <reportElement x="170" y="10" width="110" height="19" uuid="bc0c8f76-63c4-4cff-bfa7-118794805ee2"/>
-                <text><![CDATA[valorUnitario]]></text>
-            </staticText>
-            <staticText>
-                <reportElement x="240" y="10" width="120" height="19" uuid="bc0c8f76-63c4-4cff-bfa7-118794805ee2"/>
-                <text><![CDATA[{cantidadEntrada}]]></text>
-            </staticText>
-            <staticText>
-                <reportElement x="260" y="10" width="130" height="19" uuid="bc0c8f76-63c4-4cff-bfa7-118794805ee2"/>
-                <text><![CDATA[{valorEntrada}]]></text>
-            </staticText>
-            <staticText>
-                <reportElement x="300" y="10" width="140" height="19" uuid="bc0c8f76-63c4-4cff-bfa7-118794805ee2"/>
-                <text><![CDATA[{valorSalida}]]></text>
-            </staticText>
-            <staticText>
-                <reportElement x="340" y="10" width="150" height="19" uuid="bc0c8f76-63c4-4cff-bfa7-118794805ee2"/>
-                <text><![CDATA[{cantidadSaldo}]]></text>
-            </staticText>
-            <staticText>
-                <reportElement x="380" y="10" width="170" height="19" uuid="bc0c8f76-63c4-4cff-bfa7-118794805ee2"/>
-                <text><![CDATA[{valorSaldo}]]></text>
-            </staticText>
-            <staticText>
-                <reportElement x="420" y="10" width="400" height="19" uuid="bc0c8f76-63c4-4cff-bfa7-118794805ee2"/>
-                <text><![CDATA[{ubica}]]></text>
-            </staticText>
+            <textField>
+                <reportElement x="180" y="20" width="100" height="30" uuid="e6be2f0e-b35f-4ec2-a526-f713b1793421"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$F{valorUnitario}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="230" y="20" width="100" height="30" uuid="e6be2f0e-b35f-4ec2-a526-f713b1793421"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$F{cantidadEntrada}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="280" y="20" width="100" height="30" uuid="e6be2f0e-b35f-4ec2-a526-f713b1793421"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$F{valorEntrada}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="330" y="20" width="100" height="30" uuid="e6be2f0e-b35f-4ec2-a526-f713b1793421"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$F{cantidadSalida}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="380" y="20" width="100" height="30" uuid="e6be2f0e-b35f-4ec2-a526-f713b1793421"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$F{valorSalida}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="430" y="20" width="100" height="30" uuid="e6be2f0e-b35f-4ec2-a526-f713b1793421"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$F{cantidadSaldo}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="480" y="20" width="100" height="30" uuid="e6be2f0e-b35f-4ec2-a526-f713b1793421"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$F{valorSaldo}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="530" y="20" width="100" height="30" uuid="e6be2f0e-b35f-4ec2-a526-f713b1793421"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$F{ubica}]]></textFieldExpression>
+            </textField>
         </band>
     </detail>
     <columnFooter>
