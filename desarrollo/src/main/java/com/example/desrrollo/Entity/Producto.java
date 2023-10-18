@@ -61,8 +61,8 @@ public class Producto {
     private String foto;
     @Column(name = "descripcion")
     private String descripcion;
-    @Column(name = "ver")
-    private boolean ver;
+    @Column(name = "verpedidoweb")
+    private int verpedidoweb;
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER,orphanRemoval = true ,mappedBy = "producto")

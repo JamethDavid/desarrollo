@@ -69,6 +69,15 @@ public interface RepositoryProducto extends JpaRepository<Producto,String> {
 
 """)
     List<ProductoRentabilidadDTO>findAllByFechaRentabilidad(LocalDateTime fechaInicial, LocalDateTime fechaFinal );
+
+    @Query("""
+    SELECT NEW com.example.desrrollo.Query.KardexReferenciaDTO(p.idProducto ,p.nombre)
+    FROM producto p
+    WHERE p.idProducto = :idProducto
+    ORDER BY p.nombre
+    
+""")
+    KardexReferenciaDTO findByIdVendedorKardex( String idProducto);
 }
 
 

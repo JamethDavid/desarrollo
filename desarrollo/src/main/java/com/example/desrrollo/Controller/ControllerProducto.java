@@ -1,6 +1,8 @@
 package com.example.desrrollo.Controller;
 
 import com.example.desrrollo.Api.*;
+import com.example.desrrollo.Entity.Kardex;
+import com.example.desrrollo.Entity.Producto;
 import com.example.desrrollo.Query.KardexReferenciaDTO;
 import com.example.desrrollo.Query.ProductoNombreDTO;
 import com.example.desrrollo.Repository.RepositoryProducto;
@@ -77,4 +79,8 @@ public class ControllerProducto {
     @GetMapping("/lista-Kardex")
     public List<KardexReferenciaDTO> getKardex(){
         return iserviceQuery.findAllByNameKardexDtos(); }
+    @GetMapping("/productoId/{idproducto}")
+    public KardexReferenciaDTO getProductoId(@PathVariable String idproducto){
+        return iserviceQuery.findByIdVendedorKardex(idproducto);
+    }
 }
