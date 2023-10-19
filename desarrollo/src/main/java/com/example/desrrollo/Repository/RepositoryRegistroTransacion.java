@@ -5,17 +5,17 @@ import com.example.desrrollo.Api.RegistroTransaccionInformeClienteDTO;
 import com.example.desrrollo.Api.RegistroTransaccionInformeEntradaInventarioDTO;
 import com.example.desrrollo.Api.RegistroTransaccionInformeSalidaInventarioDTO;
 import com.example.desrrollo.Entity.RegistroTransaccion;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
-import jakarta.persistence.Tuple;
+
+import com.example.desrrollo.Query.ReferenciaClienteDto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.query.Jpa21Utils;
+import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
-
+@Repository
 
 public interface RepositoryRegistroTransacion extends JpaRepository<RegistroTransaccion,String> {
     @Query("""
@@ -43,18 +43,18 @@ public interface RepositoryRegistroTransacion extends JpaRepository<RegistroTran
     JOIN rt.persona p on rt.tercero = p.idPersona
     where rt.tercero = :idPersona
     and rt.descripcion like '%'
-    and rt.fecha>= :fechaInicio
+    and rt.fecha>= :fechaInicial
     and rt.fecha<= :fechaFinal
     ORDER BY rt.fecha
 
 """)
     List<RegistroTransaccionInformeClienteDTO>findByFechaAndPersona(LocalDateTime fechaInicial, LocalDateTime fechaFinal,String idPersona );
     @Query("""
-    SELECT NEW com.example.desrrollo.Query.RefenciaClienteDto(p.idPersona , p.nombre)
+    SELECT NEW com.example.desrrollo.Query.ReferenciaClienteDto(p.idPersona , p.nombre)
     FROM persona p
-    WHERE p.rol = com.example.desrrollo.Entity.Persona.Rol.Cliente
+    WHERE p.rol = 'Cliente'
     order by p.nombre
     
 """)
-    List<RegistroTransaccionInformeClienteDTO>findAllCliente();
+    List<ReferenciaClienteDto>findAllCliente();
 }

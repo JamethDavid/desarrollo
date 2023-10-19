@@ -1,11 +1,11 @@
 package com.example.desrrollo.Query;
 
-public class RefenciaClienteDto {
+public class ReferenciaClienteDto {
     private String idPersona;
     private String nombre;
-    public RefenciaClienteDto() {
+    public ReferenciaClienteDto() {
     }
-    public RefenciaClienteDto(String idPersona, String nombre) {
+    public ReferenciaClienteDto(String idPersona, String nombre) {
         this.idPersona = idPersona;
         this.nombre = nombre;
     }

@@ -5,6 +5,8 @@ import com.example.desrrollo.Entity.Kardex;
 import com.example.desrrollo.Entity.Producto;
 import com.example.desrrollo.Query.KardexReferenciaDTO;
 import com.example.desrrollo.Query.ProductoNombreDTO;
+import com.example.desrrollo.Query.ReferenciaClienteDto;
+import com.example.desrrollo.Query.ReferenciaClienteDto;
 import com.example.desrrollo.Repository.RepositoryProducto;
 import com.example.desrrollo.Repository.RepositoryRegistroTransacion;
 import com.example.desrrollo.Services.IserviceQuery;
@@ -71,16 +73,21 @@ public class ControllerProducto {
             ,@PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)LocalDateTime fechaFinal){
         return repositoryProducto.findAllByFechaRentabilidad(fechaInicial,fechaFinal);
     }
+
+    //--------------------------------------------//
     @GetMapping("/linea-producto")
     public List<ProductoNombreDTO> getProductoLineaDTO(){
-
         return iserviceQuery.findAllByName();
     }
-    @GetMapping("/lista-Kardex")
+    @GetMapping("/lista-kardex")
     public List<KardexReferenciaDTO> getKardex(){
         return iserviceQuery.findAllByNameKardexDtos(); }
-    @GetMapping("/productoId/{idproducto}")
-    public KardexReferenciaDTO getProductoId(@PathVariable String idproducto){
+    @GetMapping("/producto-id/{idproducto}")
+    public KardexReferenciaDTO getProductoIdDTO(@PathVariable String idproducto){
         return iserviceQuery.findByIdVendedorKardex(idproducto);
+    }
+    @GetMapping("/lista-cliente")
+    public List<ReferenciaClienteDto> getAllClienteListDTO(){
+        return iserviceQuery.findAllCliente();
     }
 }
