@@ -46,8 +46,9 @@ public class Persona {
     @Column(name = "vendedor", length = 15)
     private String vendedor;
 
-    @Column(name = "zona")
-    private int zona;
+    @ManyToOne
+    @JoinColumn(name = "id_zona")
+    private Zona zona;
 
     @Column(name = "retencion")
     private boolean retencion;

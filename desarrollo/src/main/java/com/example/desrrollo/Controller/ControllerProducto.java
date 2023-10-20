@@ -3,9 +3,7 @@ package com.example.desrrollo.Controller;
 import com.example.desrrollo.Api.*;
 import com.example.desrrollo.Entity.Kardex;
 import com.example.desrrollo.Entity.Producto;
-import com.example.desrrollo.Query.KardexReferenciaDTO;
-import com.example.desrrollo.Query.ProductoNombreDTO;
-import com.example.desrrollo.Query.ReferenciaClienteDto;
+import com.example.desrrollo.Query.*;
 import com.example.desrrollo.Query.ReferenciaClienteDto;
 import com.example.desrrollo.Repository.RepositoryProducto;
 import com.example.desrrollo.Repository.RepositoryRegistroTransacion;
@@ -89,5 +87,10 @@ public class ControllerProducto {
     @GetMapping("/lista-cliente")
     public List<ReferenciaClienteDto> getAllClienteListDTO(){
         return iserviceQuery.findAllCliente();
+    }
+
+    @GetMapping("/lista-zona")
+    public List<ReferenciaZonaDTO> getAllZonaListDTO(){
+        return iserviceQuery.findAllZona();
     }
 }

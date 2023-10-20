@@ -1,16 +1,20 @@
 package com.example.desrrollo.Query;
 
-public class ReferenciaZona {
-    private String nombre;
-    public ReferenciaZona() {
+public class ReferenciaZonaDTO {
+    private String zonaNombre;
+
+    public ReferenciaZonaDTO() {
     }
-    public ReferenciaZona(String nombre) {
-        this.nombre = nombre;
+
+    public ReferenciaZonaDTO(String zonaNombre) {
+        this.zonaNombre = zonaNombre;
     }
-    public String getNombre() {
-        return nombre;
+
+    public String getZonaNombre() {
+        return zonaNombre;
     }
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+
+    public void setZonaNombre(String zonaNombre) {
+        this.zonaNombre = zonaNombre;
     }
 }

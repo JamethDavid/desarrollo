@@ -2,9 +2,11 @@ package com.example.desrrollo.Services;
 import com.example.desrrollo.Query.KardexReferenciaDTO;
 import com.example.desrrollo.Query.ProductoNombreDTO;
 import com.example.desrrollo.Query.ReferenciaClienteDto;
+import com.example.desrrollo.Query.ReferenciaZonaDTO;
 import com.example.desrrollo.Repository.RepositoryLineaProducto;
 import com.example.desrrollo.Repository.RepositoryProducto;
 import com.example.desrrollo.Repository.RepositoryRegistroTransacion;
+import com.example.desrrollo.Repository.RepositoryZona;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +19,8 @@ public class serviceQuery  implements   IserviceQuery{
     private RepositoryLineaProducto repositoryLineaProducto;
     @Autowired
     private RepositoryRegistroTransacion repositoryRegistroTransacion;
+    @Autowired
+    private RepositoryZona repositoryZona;
     @Override
     public List<ProductoNombreDTO> findAllByName() {
         return repositoryLineaProducto.findAllByNombre() ;
@@ -31,6 +35,11 @@ public class serviceQuery  implements   IserviceQuery{
     @Override
     public List<ReferenciaClienteDto> findAllCliente(){
         return repositoryRegistroTransacion.findAllCliente();
+    }
+
+    @Override
+    public List<ReferenciaZonaDTO> findAllZona() {
+        return repositoryZona.findAllByNombre();
     }
 
 
