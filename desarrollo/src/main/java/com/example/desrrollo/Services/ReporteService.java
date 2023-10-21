@@ -36,14 +36,23 @@ public class ReporteService{
         JasperPrint report = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
         return report;
     }
-
     private JasperPrint getReportWithParametersFecha(List<?> listDto, String jrxmlFileName,Map<String, Object> parameters ,LocalDateTime fechaIncio, LocalDateTime fechaFinal) throws FileNotFoundException, JRException {
         JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(listDto);
         File file = ResourceUtils.getFile("classpath:Reportes/" + jrxmlFileName + ".jrxml");
         JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
         parameters.put("fechaInicio",fechaIncio);
         parameters.put("fechaFinal",fechaFinal );
+        JasperPrint report = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
+        return report;
+    }
 
+    private JasperPrint getReportWithParametersFechaAndNombre(List<?> listDto, String jrxmlFileName,Map<String, Object> parameters ,LocalDateTime fechaInicio, LocalDateTime fechaFinal ,String nombre) throws FileNotFoundException, JRException {
+        JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(listDto);
+        File file = ResourceUtils.getFile("classpath:Reportes/" + jrxmlFileName + ".jrxml");
+        JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
+        parameters.put("fechaInicio",fechaInicio);
+        parameters.put("fechaFinal",fechaFinal);
+        parameters.put("zona",nombre);
         JasperPrint report = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
         return report;
     }
@@ -89,6 +98,12 @@ public class ReporteService{
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("idVendedor",idVendedor);
         return JasperExportManager.exportReportToPdf(getReportWithParameters(list,"informeKardex",parameters,idVendedor));
+    }
+
+    public byte[] exportToVentasZonaPdf(List<ZonaReporteVentaDTO> list ,String zona) throws JRException, FileNotFoundException {
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put("zona",zona);
+        return JasperExportManager.exportReportToPdf(getReportWithParameters(list,"LineaProducto",parameters,zona));
     }
 
 }

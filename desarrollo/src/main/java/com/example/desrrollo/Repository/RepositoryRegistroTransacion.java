@@ -1,12 +1,10 @@
 package com.example.desrrollo.Repository;
 
-import com.example.desrrollo.Api.ProductoLineaProductoDTO;
-import com.example.desrrollo.Api.RegistroTransaccionInformeClienteDTO;
-import com.example.desrrollo.Api.RegistroTransaccionInformeEntradaInventarioDTO;
-import com.example.desrrollo.Api.RegistroTransaccionInformeSalidaInventarioDTO;
+import com.example.desrrollo.Api.*;
 import com.example.desrrollo.Entity.RegistroTransaccion;
 
 import com.example.desrrollo.Query.ReferenciaClienteDto;
+import com.example.desrrollo.Query.ReferenciaZonaDTO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.query.Jpa21Utils;
@@ -57,4 +55,18 @@ public interface RepositoryRegistroTransacion extends JpaRepository<RegistroTran
     
 """)
     List<ReferenciaClienteDto>findAllCliente();
+
+    @Query("""
+    SELECT NEW com.example.desrrollo.Api.ZonaReporteVentaDTO(z.nombre,rt.descripcion,rt.consecutivoGravado,rt.tercero,p.nombre,rt.total)
+    FROM registro_transaccion rt
+    JOIN rt.persona p
+    JOIN p.zona z
+    where  rt.tipo like 'G%'
+    and rt.tercero = p.idPersona
+    and z.nombre=:nombre
+    and rt.anulada = false 
+    order by p.nombre,rt.consecutivoGravado
+    
+""")
+    List<ZonaReporteVentaDTO>findAllZona(String nombre);
 }

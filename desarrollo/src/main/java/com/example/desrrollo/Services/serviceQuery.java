@@ -36,7 +36,6 @@ public class serviceQuery  implements   IserviceQuery{
     public List<ReferenciaClienteDto> findAllCliente(){
         return repositoryRegistroTransacion.findAllCliente();
     }
-
     @Override
     public List<ReferenciaZonaDTO> findAllZona() {
         return repositoryZona.findAllByNombre();
