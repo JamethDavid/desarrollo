@@ -63,6 +63,8 @@ public class ReportesPDF  implements  IReporteService{
         return reporteService.exportToVentasZonaPdf(repositoryRegistroTransacion.findAllZona(nombre),nombre);
     }
 
+
+
     @Override
     public byte[] exportPdf() throws JRException, FileNotFoundException {
         return reporteService.exportToPdf(repositoryLineaRegistroProducto.findAllByDTO());

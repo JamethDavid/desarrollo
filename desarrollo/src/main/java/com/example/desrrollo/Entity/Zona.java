@@ -6,7 +6,7 @@ import lombok.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Entity(name = "Zona")
+@Entity(name = "zona")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter

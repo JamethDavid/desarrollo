@@ -79,12 +79,12 @@ private  IReporteService IreporteService;
         headers.setContentType(MediaType.APPLICATION_PDF);
         return ResponseEntity.ok().headers(headers).body(IreporteService.exportToKardexPdf(idVendedor));
     }
-    @GetMapping("/reporte-zona-pdf/{zona}")
-    public ResponseEntity<byte[]> exportToZona(@PathVariable String zona) throws JRException, FileNotFoundException {
+
+    @GetMapping("/reporte-zona-pdf/{nombre}")
+    public ResponseEntity<byte[]> exportToZona(@PathVariable String nombre) throws JRException, FileNotFoundException {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_PDF);
-        return ResponseEntity.ok().headers(headers).body(IreporteService.exportToVentasZonaPdf(zona));
+        return ResponseEntity.ok().headers(headers).body(IreporteService.exportToVentasZonaPdf(nombre));
     }
-
 
 }

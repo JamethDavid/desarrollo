@@ -103,7 +103,7 @@ public class ReporteService{
     public byte[] exportToVentasZonaPdf(List<ZonaReporteVentaDTO> list ,String zona) throws JRException, FileNotFoundException {
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("zona",zona);
-        return JasperExportManager.exportReportToPdf(getReportWithParameters(list,"LineaProducto",parameters,zona));
+        return JasperExportManager.exportReportToPdf(getReportWithParameters(list,"reporteVentaZona",parameters,zona));
     }
 
 }

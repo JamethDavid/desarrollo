@@ -12,7 +12,7 @@ import java.util.List;
 public interface RepositoryZona extends JpaRepository<Zona , Integer> {
     @Query("""
     SELECT NEW com.example.desrrollo.Query.ReferenciaZonaDTO(z.nombre)
-    FROM Zona z
+    FROM zona z
 
 """)
     List<ReferenciaZonaDTO> findAllByNombre();

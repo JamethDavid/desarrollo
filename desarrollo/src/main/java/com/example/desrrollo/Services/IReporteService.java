@@ -21,4 +21,6 @@ public interface IReporteService {
     byte[] exportToVentasZonaPdf(String nombre) throws JRException, FileNotFoundException;
 
 
+
+
 }

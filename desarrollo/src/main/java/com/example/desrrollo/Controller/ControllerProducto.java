@@ -5,6 +5,7 @@ import com.example.desrrollo.Entity.Kardex;
 import com.example.desrrollo.Entity.Producto;
 import com.example.desrrollo.Query.*;
 import com.example.desrrollo.Query.ReferenciaClienteDto;
+import com.example.desrrollo.Repository.RepositoryLineaProducto;
 import com.example.desrrollo.Repository.RepositoryProducto;
 import com.example.desrrollo.Repository.RepositoryRegistroTransacion;
 import com.example.desrrollo.Services.IserviceQuery;
@@ -26,6 +27,8 @@ public class ControllerProducto {
     private IserviceQuery iserviceQuery;
     @Autowired
     private RepositoryProducto repositoryProducto;
+    @Autowired
+    private RepositoryLineaProducto repositoryLineaProducto;
     @Autowired
     private RepositoryRegistroTransacion repositoryRegistroTransacion;
 
@@ -52,6 +55,16 @@ public class ControllerProducto {
     public List<ProductoLineaProductoDTO> getProductoLineaDTO(@PathVariable String nombre){
         return repositoryProducto.findAllByNombre(nombre);
     }
+    @GetMapping("/linea-zona/{nombre}")
+    public List<ZonaReporteVentaDTO> getZonaLineaDTO(@PathVariable String nombre){
+        return repositoryRegistroTransacion.findAllZona(nombre);
+    }
+    @GetMapping("/venta-linea-producto/{fechaInicial}/{fechaFinal}")
+    public List<InformeVentaLineaProductoDTO> getInformeVentaLineaProductoDTO(
+            @PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime fechaInicial
+            ,@PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)LocalDateTime fechaFinal){
+        return repositoryLineaProducto.findAllByLineaProductoAndFAndFecha(fechaInicial,fechaFinal);
+    }
     @GetMapping("/salida-inventario/{fechaInicial}/{fechaFinal}")
     public List<RegistroTransaccionInformeSalidaInventarioDTO> getRegistroTransacionSalidaInventarioDTO(
              @PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime fechaInicial
@@ -72,7 +85,7 @@ public class ControllerProducto {
         return repositoryProducto.findAllByFechaRentabilidad(fechaInicial,fechaFinal);
     }
 
-    //--------------------------------------------//
+    //---------------------desarrolla-----------------------//
     @GetMapping("/linea-producto")
     public List<ProductoNombreDTO> getProductoLineaDTO(){
         return iserviceQuery.findAllByName();

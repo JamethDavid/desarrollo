@@ -23,7 +23,7 @@ public class RegistroTransaccion {
     private String descripcion;
 
     @Column(nullable = false)
-    private boolean anulada;
+    private int anulada;
 
     @Column(nullable = false, precision = 20, scale = 2)
     private BigDecimal subtotal;
