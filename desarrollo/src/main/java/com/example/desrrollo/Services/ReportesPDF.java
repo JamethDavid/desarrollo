@@ -63,6 +63,10 @@ public class ReportesPDF  implements  IReporteService{
         return reporteService.exportToVentasZonaPdf(repositoryRegistroTransacion.findAllZona(nombre),nombre);
     }
 
+    @Override
+    public byte[] exportToReporteClientePdf(LocalDateTime fechaInicio, LocalDateTime fechaFinal, String idPersona) throws JRException, FileNotFoundException {
+        return reporteService.exportToReporteClientePdf(repositoryRegistroTransacion.findByFechaAndPersona(fechaInicio,fechaFinal,idPersona),fechaInicio,fechaFinal,idPersona);
+    }
 
 
     @Override

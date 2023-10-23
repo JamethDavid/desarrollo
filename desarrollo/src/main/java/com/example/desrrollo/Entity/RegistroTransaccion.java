@@ -43,7 +43,7 @@ public class RegistroTransaccion {
     @Column(nullable = false, length = 4)
     private String estado;
 
-    @Column(nullable = false)
+    @Column(name = "fecha_vencimiento",nullable = false)
     private LocalDateTime fechaVencimiento;
 
     @ManyToOne

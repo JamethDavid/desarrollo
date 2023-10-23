@@ -90,7 +90,6 @@ public class ControllerProducto {
     public List<ProductoNombreDTO> getProductoLineaDTO(){
         return iserviceQuery.findAllByName();
     }
-
     @GetMapping("/lista-kardex")
     public List<KardexReferenciaDTO> getKardex(){
         return iserviceQuery.findAllByNameKardexDtos(); }
@@ -102,7 +101,6 @@ public class ControllerProducto {
     public List<ReferenciaClienteDto> getAllClienteListDTO(){
         return iserviceQuery.findAllCliente();
     }
-
     @GetMapping("/lista-zona")
     public List<ReferenciaZonaDTO> getAllZonaListDTO(){
         return iserviceQuery.findAllZona();

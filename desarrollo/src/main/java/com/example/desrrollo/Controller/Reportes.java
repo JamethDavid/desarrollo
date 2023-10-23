@@ -86,5 +86,14 @@ private  IReporteService IreporteService;
         headers.setContentType(MediaType.APPLICATION_PDF);
         return ResponseEntity.ok().headers(headers).body(IreporteService.exportToVentasZonaPdf(nombre));
     }
+    @GetMapping("/reporte-cliente-pdf/{fechaInicio}/{fechaFinal}/{idPersona}")
+    public ResponseEntity<byte[]> exportToReporteCliente(
+            @PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime fechaInicio
+            ,@PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)LocalDateTime fechaFinal,
+            @PathVariable String idPersona) throws JRException, FileNotFoundException {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_PDF);
+        return ResponseEntity.ok().headers(headers).body(IreporteService.exportToReporteClientePdf(fechaInicio,fechaFinal,idPersona));
+    }
 
 }

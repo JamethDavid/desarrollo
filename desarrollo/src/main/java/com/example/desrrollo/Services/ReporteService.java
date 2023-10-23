@@ -46,13 +46,13 @@ public class ReporteService{
         return report;
     }
 
-    private JasperPrint getReportWithParametersFechaAndNombre(List<?> listDto, String jrxmlFileName,Map<String, Object> parameters ,LocalDateTime fechaInicio, LocalDateTime fechaFinal ,String nombre) throws FileNotFoundException, JRException {
+    private JasperPrint getReportWithParametersFechaAndNombre(List<?> listDto, String jrxmlFileName,Map<String, Object> parameters ,LocalDateTime fechaInicio, LocalDateTime fechaFinal ,String Persona) throws FileNotFoundException, JRException {
         JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(listDto);
         File file = ResourceUtils.getFile("classpath:Reportes/" + jrxmlFileName + ".jrxml");
         JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
         parameters.put("fechaInicio",fechaInicio);
         parameters.put("fechaFinal",fechaFinal);
-        parameters.put("zona",nombre);
+        parameters.put("idPersona",Persona);
         JasperPrint report = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
         return report;
     }
@@ -104,6 +104,13 @@ public class ReporteService{
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("zona",zona);
         return JasperExportManager.exportReportToPdf(getReportWithParameters(list,"reporteVentaZona",parameters,zona));
+    }
+    public byte[] exportToReporteClientePdf(List<RegistroTransaccionInformeClienteDTO> list, LocalDateTime fechaInicio, LocalDateTime fechaFinal, String idPersona) throws JRException, FileNotFoundException {
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put("fechaInical", fechaInicio);
+        parameters.put("fechaFinal", fechaFinal);
+        parameters.put("idPersona", idPersona);
+        return JasperExportManager.exportReportToPdf(getReportWithParametersFechaAndNombre(list, "InformeCliente", parameters, fechaInicio,fechaFinal,idPersona));
     }
 
 }
