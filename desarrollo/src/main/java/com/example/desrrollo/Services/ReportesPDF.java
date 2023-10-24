@@ -1,6 +1,7 @@
 package com.example.desrrollo.Services;
 
 import com.example.desrrollo.Api.ProductoLineaProductoDTO;
+import com.example.desrrollo.Repository.RepositoryLineaProducto;
 import com.example.desrrollo.Repository.RepositoryLineaRegistroProducto;
 import com.example.desrrollo.Repository.RepositoryProducto;
 import com.example.desrrollo.Repository.RepositoryRegistroTransacion;
@@ -22,6 +23,8 @@ public class ReportesPDF  implements  IReporteService{
     private ReporteService reporteService;
     @Autowired
     private RepositoryRegistroTransacion repositoryRegistroTransacion;
+    @Autowired
+    private RepositoryLineaProducto repositoryLineaProducto;
 
 
     public byte[] exportToListaExistentePdf() throws JRException, FileNotFoundException {
@@ -66,6 +69,11 @@ public class ReportesPDF  implements  IReporteService{
     @Override
     public byte[] exportToReporteClientePdf(LocalDateTime fechaInicio, LocalDateTime fechaFinal, String idPersona) throws JRException, FileNotFoundException {
         return reporteService.exportToReporteClientePdf(repositoryRegistroTransacion.findByFechaAndPersona(fechaInicio,fechaFinal,idPersona),fechaInicio,fechaFinal,idPersona);
+    }
+
+    @Override
+    public byte[] exportToInformeVentaLineaFechaPdf(LocalDateTime fechaInicio, LocalDateTime fechaFinal) throws JRException, FileNotFoundException {
+        return reporteService.exportToInformeVentaLineaFechaPdf(repositoryLineaProducto.findAllByLineaProductoAndFecha(fechaInicio,fechaFinal),fechaInicio,fechaFinal);
     }
 
 

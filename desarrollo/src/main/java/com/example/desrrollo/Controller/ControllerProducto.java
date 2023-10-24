@@ -63,7 +63,7 @@ public class ControllerProducto {
     public List<InformeVentaLineaProductoDTO> getInformeVentaLineaProductoDTO(
             @PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime fechaInicial
             ,@PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)LocalDateTime fechaFinal){
-        return repositoryLineaProducto.findAllByLineaProductoAndFAndFecha(fechaInicial,fechaFinal);
+        return repositoryLineaProducto.findAllByLineaProductoAndFecha(fechaInicial,fechaFinal);
     }
     @GetMapping("/salida-inventario/{fechaInicial}/{fechaFinal}")
     public List<RegistroTransaccionInformeSalidaInventarioDTO> getRegistroTransacionSalidaInventarioDTO(

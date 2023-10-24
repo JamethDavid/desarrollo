@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 public class InformeVentaLineaProductoDTO {
     private Long idLineaProducto;
-    private String nombreLineaProducto;
+    private String lineaProducto;
     private String nombreProducto;
     private BigDecimal valorTotal;
     private BigDecimal cantidad;
@@ -13,9 +13,9 @@ public class InformeVentaLineaProductoDTO {
     public InformeVentaLineaProductoDTO() {
     }
 
-    public InformeVentaLineaProductoDTO(Long idLineaProducto, String nombreLineaProducto, String nombreProducto, BigDecimal valorTotal, BigDecimal cantidad, String consecutivoGravado) {
+    public InformeVentaLineaProductoDTO(Long idLineaProducto, String lineaProducto, String nombreProducto, BigDecimal valorTotal, BigDecimal cantidad, String consecutivoGravado) {
         this.idLineaProducto = idLineaProducto;
-        this.nombreLineaProducto = nombreLineaProducto;
+        this.lineaProducto = lineaProducto;
         this.nombreProducto = nombreProducto;
         this.valorTotal = valorTotal;
         this.cantidad = cantidad;
@@ -30,12 +30,12 @@ public class InformeVentaLineaProductoDTO {
         this.idLineaProducto = idLineaProducto;
     }
 
-    public String getNombreLineaProducto() {
-        return nombreLineaProducto;
+    public String getLineaProducto() {
+        return lineaProducto;
     }
 
-    public void setNombreLineaProducto(String nombreLineaProducto) {
-        this.nombreLineaProducto = nombreLineaProducto;
+    public void setLineaProducto(String lineaProducto) {
+        this.lineaProducto = lineaProducto;
     }
 
     public String getNombreProducto() {
