@@ -37,16 +37,16 @@ public interface RepositoryRegistroTransacion extends JpaRepository<RegistroTran
 
     @Query("""
     SELECT NEW com.example.desrrollo.Api.RegistroTransaccionInformeClienteDTO(rt.consecutivoGravado,p.nombre,rt.fecha,rt.descripcion,rt.subtotal,rt.total,rt.fechaVencimiento)
-    FROM registro_transaccion rt
-    JOIN rt.persona p on rt.tercero = p.idPersona
-    where rt.tercero = :idPersona
-    and rt.descripcion like '%'
-    and rt.fecha>= :fechaInicial
-    and rt.fecha<= :fechaFinal
+    FROM registro_transaccion rt ,persona  p
+    where rt.tercero = p.idPersona
+    and rt.tercero = :idPersona
+    and rt.descripcion like 'VENTAS%'
+    and rt.fecha >= :fechaInicial
+    and rt.fecha <= :fechaFinal
     ORDER BY rt.fecha
 
 """)
-    List<RegistroTransaccionInformeClienteDTO>findByFechaAndPersona(LocalDateTime fechaInicial, LocalDateTime fechaFinal,String idPersona );
+    List<RegistroTransaccionInformeClienteDTO>findByFechaAndPersona(LocalDateTime fechaInicial, LocalDateTime fechaFinal,String idPersona);
     @Query("""
     SELECT NEW com.example.desrrollo.Query.ReferenciaClienteDto(p.idPersona , p.nombre)
     FROM persona p
