@@ -71,6 +71,9 @@ public class ReporteService{
     public byte[] exportToInventarioValorizadoPdf(List<ProductoUnidadMedidaInventarioDTO> list) throws JRException, FileNotFoundException {
         return JasperExportManager.exportReportToPdf(getReport(list, "InventarioValorizado"));
     }
+    public byte[] exportToReporteVentaZonaFechaPdf(List<ZonaReporteVentaFechaDTO> list) throws JRException, FileNotFoundException {
+        return JasperExportManager.exportReportToPdf(getReport(list, "ReporteVentaZonaFecha"));
+    }
     public byte[] exportToLineaProductoPdf(List<ProductoLineaProductoDTO> list ,String nombre) throws JRException, FileNotFoundException {
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("nombre",nombre);

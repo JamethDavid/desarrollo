@@ -59,13 +59,22 @@ public interface RepositoryRegistroTransacion extends JpaRepository<RegistroTran
     @Query("""
     SELECT NEW com.example.desrrollo.Api.ZonaReporteVentaDTO(z.nombre, rt.descripcion, rt.consecutivoGravado, rt.tercero, p.nombre, rt.total)
     FROM registro_transaccion rt ,persona p, zona z
-    where rt.tipo like 'G%'
+    where rt.tipo like 'V%'
     and rt.tercero = p.idPersona
     and p.zona.idZona=z.idZona
     and z.nombre = :nombre
+    and rt.anulada= 0
     order by p.nombre, rt.consecutivoGravado
-  
-    
 """)
     List<ZonaReporteVentaDTO>findAllZona(String nombre);
+    @Query("""
+    SELECT NEW com.example.desrrollo.Api.ZonaReporteVentaFechaDTO(z.nombre, rt.descripcion,p.nombre,rt.total,rt.fecha, rt.consecutivoGravado)
+    FROM registro_transaccion rt ,persona p, zona z
+    where rt.tipo like 'V%'
+    and rt.tercero = p.idPersona
+    and p.zona.idZona=z.idZona
+    and rt.anulada= 0
+    order by rt.fecha
+""")
+    List<ZonaReporteVentaFechaDTO>findAllZonaFecha();
 }
