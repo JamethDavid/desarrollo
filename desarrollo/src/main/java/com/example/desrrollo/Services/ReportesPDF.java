@@ -87,6 +87,11 @@ public class ReportesPDF  implements  IReporteService{
     }
 
     @Override
+    public byte[] exportToReportePedidoPendientePdf() throws JRException, FileNotFoundException {
+        return reporteService.exportToReportePedidoPendientePdf(repositoryRegistroTransacion.findAllReportePedidoPendiente());
+    }
+
+    @Override
     public byte[] exportPdf() throws JRException, FileNotFoundException {
         return reporteService.exportToPdf(repositoryLineaRegistroProducto.findAllByDTO());
     }

@@ -23,6 +23,7 @@ public interface IReporteService {
     byte[] exportToReporteAcomuladoVentaProductoPdf(LocalDateTime fechaInicio, LocalDateTime fechaFinal ,String idNombre) throws JRException, FileNotFoundException;
     byte[] exportToInformeVentaLineaFechaPdf(LocalDateTime fechaInicio, LocalDateTime fechaFinal) throws JRException, FileNotFoundException;
     byte[] exportToReporteVentaZonaFechaPdf() throws JRException, FileNotFoundException;
+    byte[] exportToReportePedidoPendientePdf() throws JRException, FileNotFoundException;
 
 
 

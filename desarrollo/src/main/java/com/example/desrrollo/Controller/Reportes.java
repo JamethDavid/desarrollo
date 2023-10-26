@@ -42,6 +42,12 @@ private  IReporteService IreporteService;
         headers.setContentType(MediaType.APPLICATION_PDF);
         return ResponseEntity.ok().headers(headers).body(IreporteService.exportToInventarioValorizadoPdf());
     }
+    @GetMapping("/reporte-pedido-pendiente-pdf")
+    public ResponseEntity<byte[]> exporToReportePedidoPendientePdf() throws JRException, FileNotFoundException {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_PDF);
+        return ResponseEntity.ok().headers(headers).body(IreporteService.exportToReportePedidoPendientePdf());
+    }
 
     @GetMapping("/lista-producto-pdf/{nombre}")
     public ResponseEntity<byte[]> exportToListaProductoPdf(@PathVariable String nombre) throws JRException, FileNotFoundException {
@@ -65,6 +71,8 @@ private  IReporteService IreporteService;
         headers.setContentType(MediaType.APPLICATION_PDF);
         return ResponseEntity.ok().headers(headers).body(IreporteService.exportToSalidaInventarioPdf(fechaInicio,fechaFinal));
     }
+
+
     @GetMapping("/producto-rentabilidad-pdf/{fechaInicio}/{fechaFinal}")
     public ResponseEntity<byte[]> exportToRentabilidad(
             @PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime fechaInicio

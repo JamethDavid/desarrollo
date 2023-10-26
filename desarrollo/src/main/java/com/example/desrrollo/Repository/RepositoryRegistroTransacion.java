@@ -77,4 +77,14 @@ public interface RepositoryRegistroTransacion extends JpaRepository<RegistroTran
     order by rt.fecha
 """)
     List<ZonaReporteVentaFechaDTO>findAllZonaFecha();
+
+    @Query("""
+    SELECT NEW com.example.desrrollo.Api.ReportePedidoPendienteDTO(rt.consecutivoGravado,p.nombre,rt.fecha,rt.subtotal,rt.total,rt.observacion)
+    FROM registro_transaccion rt ,persona p
+    where rt.tipo ='PE'
+    and rt.estado ='P'
+    and p.idPersona = rt.tercero
+    order by p.nombre
+""")
+    List<ReportePedidoPendienteDTO>findAllReportePedidoPendiente();
 }

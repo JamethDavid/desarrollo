@@ -70,6 +70,9 @@ public class ReporteService{
     public byte[] exportToPdf(List<LineaRegistroTransaccionProductoDTO> list) throws JRException, FileNotFoundException {
         return JasperExportManager.exportReportToPdf(getReport(list, "AuxilioInventario"));
     }
+    public byte[] exportToReportePedidoPendientePdf(List<ReportePedidoPendienteDTO> list) throws JRException, FileNotFoundException {
+        return JasperExportManager.exportReportToPdf(getReport(list, "ReportePedidoPendiente"));
+    }
 
     public byte[] exportToListaPrecioPdf(List<ProductoUnidadMedidaListaPrecioDTO> list) throws JRException, FileNotFoundException {
         return JasperExportManager.exportReportToPdf(getReport(list, "ListaPrecios"));
