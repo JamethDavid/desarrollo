@@ -56,6 +56,16 @@ public class ReporteService{
         JasperPrint report = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
         return report;
     }
+    private JasperPrint getReportWithParametersFechaAndIdProducto(List<?> listDto, String jrxmlFileName,Map<String, Object> parameters ,LocalDateTime fechaInicio, LocalDateTime fechaFinal ,String idProducto) throws FileNotFoundException, JRException {
+        JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(listDto);
+        File file = ResourceUtils.getFile("classpath:Reportes/" + jrxmlFileName + ".jrxml");
+        JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
+        parameters.put("fechaInicio",fechaInicio);
+        parameters.put("fechaFinal",fechaFinal);
+        parameters.put("idProducto",idProducto);
+        JasperPrint report = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
+        return report;
+    }
 
     public byte[] exportToPdf(List<LineaRegistroTransaccionProductoDTO> list) throws JRException, FileNotFoundException {
         return JasperExportManager.exportReportToPdf(getReport(list, "AuxilioInventario"));
@@ -120,6 +130,13 @@ public class ReporteService{
         parameters.put("fechaFinal", fechaFinal);
         parameters.put("idPersona", idPersona);
         return JasperExportManager.exportReportToPdf(getReportWithParametersFechaAndNombre(list, "InformeCliente", parameters, fechaInicio,fechaFinal,idPersona));
+    }
+    public byte[] exportToReporteAcomuladoVentaProductoPdf(List<AcomuladoVentasProductoDTO> list, LocalDateTime fechaInicio, LocalDateTime fechaFinal, String idProducto) throws JRException, FileNotFoundException {
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put("fechaInical", fechaInicio);
+        parameters.put("fechaFinal", fechaFinal);
+        parameters.put("idProducto", idProducto);
+        return JasperExportManager.exportReportToPdf(getReportWithParametersFechaAndIdProducto(list, "AcomuladoVentaProducto", parameters, fechaInicio,fechaFinal,idProducto));
     }
 
 }

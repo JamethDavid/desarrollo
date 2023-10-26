@@ -72,6 +72,11 @@ public class ReportesPDF  implements  IReporteService{
     }
 
     @Override
+    public byte[] exportToReporteAcomuladoVentaProductoPdf(LocalDateTime fechaInicio, LocalDateTime fechaFinal, String idProducto) throws JRException, FileNotFoundException {
+        return reporteService.exportToReporteAcomuladoVentaProductoPdf(repositoryLineaRegistroProducto.findAllByAcomuladoVentaProducto(fechaInicio,fechaFinal,idProducto),fechaInicio,fechaFinal,idProducto);
+    }
+
+    @Override
     public byte[] exportToInformeVentaLineaFechaPdf(LocalDateTime fechaInicio, LocalDateTime fechaFinal) throws JRException, FileNotFoundException {
         return reporteService.exportToInformeVentaLineaFechaPdf(repositoryLineaProducto.findAllByLineaProductoAndFecha(fechaInicio,fechaFinal),fechaInicio,fechaFinal);
     }

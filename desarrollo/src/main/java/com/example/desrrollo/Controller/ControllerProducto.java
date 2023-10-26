@@ -6,6 +6,7 @@ import com.example.desrrollo.Entity.Producto;
 import com.example.desrrollo.Query.*;
 import com.example.desrrollo.Query.ReferenciaClienteDto;
 import com.example.desrrollo.Repository.RepositoryLineaProducto;
+import com.example.desrrollo.Repository.RepositoryLineaRegistroProducto;
 import com.example.desrrollo.Repository.RepositoryProducto;
 import com.example.desrrollo.Repository.RepositoryRegistroTransacion;
 import com.example.desrrollo.Services.IserviceQuery;
@@ -31,6 +32,8 @@ public class ControllerProducto {
     private RepositoryLineaProducto repositoryLineaProducto;
     @Autowired
     private RepositoryRegistroTransacion repositoryRegistroTransacion;
+    @Autowired
+    private RepositoryLineaRegistroProducto repositoryLineaRegistroProducto;
 
     @GetMapping("/listaPrecio")
     public List<ProductoUnidadMedidaListaPrecioDTO> getALListProductoUnidadMedidaDTOS(){
@@ -90,6 +93,13 @@ public class ControllerProducto {
             ,@PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)LocalDateTime fechaFinal,
             @PathVariable String idPersona){
         return repositoryRegistroTransacion.findByFechaAndPersona(fechaInicial,fechaFinal,idPersona);
+    }
+    @GetMapping("/reporte-acomulado-venta-producto/{fechaInicial}/{fechaFinal}/{idProducto}")
+    public List<AcomuladoVentasProductoDTO> getReporteAcomuladoVentaProductoDTO(
+            @PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime fechaInicial
+            ,@PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)LocalDateTime fechaFinal,
+            @PathVariable String idProducto){
+        return repositoryLineaRegistroProducto.findAllByAcomuladoVentaProducto(fechaInicial,fechaFinal,idProducto);
     }
 
     //---------------------desarrolla-----------------------//

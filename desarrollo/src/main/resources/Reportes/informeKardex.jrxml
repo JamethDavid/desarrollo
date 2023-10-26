@@ -4,59 +4,26 @@
     <property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter"/>
     <parameter name="idVendedor" class="java.time.LocalDateTime"/>
     <field name="fecha" class="java.time.LocalDateTime">
-        <property name="com.jaspersoft.studio.field.name" value="fecha"/>
-        <property name="com.jaspersoft.studio.field.label" value="fecha"/>
-        <property name="com.jaspersoft.studio.field.tree.path" value="registro_transaccion"/>
     </field>
     <field name="detalle" class="java.lang.String">
-        <property name="com.jaspersoft.studio.field.name" value="id_transaccion"/>
-        <property name="com.jaspersoft.studio.field.label" value="transaccion"/>
-        <property name="com.jaspersoft.studio.field.tree.path" value="transaccion"/>
     </field>
     <field name="valorUnitario" class="java.math.BigDecimal">
-        <property name="com.jaspersoft.studio.field.name" value="descripcion"/>
-        <property name="com.jaspersoft.studio.field.label" value="descripcion"/>
-        <property name="com.jaspersoft.studio.field.tree.path" value="registro_transaccion"/>
     </field>
     <field name="cantidadEntrada" class="java.math.BigDecimal">
-        <property name="com.jaspersoft.studio.field.name" value="descripcion"/>
-        <property name="com.jaspersoft.studio.field.label" value="descripcion"/>
-        <property name="com.jaspersoft.studio.field.tree.path" value="registro_transaccion"/>
     </field>
     <field name="valorEntrada" class="java.math.BigDecimal">
-        <property name="com.jaspersoft.studio.field.name" value="descripcion"/>
-        <property name="com.jaspersoft.studio.field.label" value="descripcion"/>
-        <property name="com.jaspersoft.studio.field.tree.path" value="registro_transaccion"/>
     </field>
     <field name="cantidadSalida" class="java.math.BigDecimal">
-        <property name="com.jaspersoft.studio.field.name" value="descripcion"/>
-        <property name="com.jaspersoft.studio.field.label" value="descripcion"/>
-        <property name="com.jaspersoft.studio.field.tree.path" value="registro_transaccion"/>
     </field>
     <field name="valorSalida" class="java.math.BigDecimal">
-        <property name="com.jaspersoft.studio.field.name" value="descripcion"/>
-        <property name="com.jaspersoft.studio.field.label" value="descripcion"/>
-        <property name="com.jaspersoft.studio.field.tree.path" value="registro_transaccion"/>
     </field>
     <field name="cantidadSaldo" class="java.math.BigDecimal">
-        <property name="com.jaspersoft.studio.field.name" value="descripcion"/>
-        <property name="com.jaspersoft.studio.field.label" value="descripcion"/>
-        <property name="com.jaspersoft.studio.field.tree.path" value="registro_transaccion"/>
     </field>
     <field name="valorSaldo" class="java.math.BigDecimal">
-        <property name="com.jaspersoft.studio.field.name" value="descripcion"/>
-        <property name="com.jaspersoft.studio.field.label" value="descripcion"/>
-        <property name="com.jaspersoft.studio.field.tree.path" value="registro_transaccion"/>
     </field>
     <field name="ubica" class="java.lang.Integer">
-        <property name="com.jaspersoft.studio.field.name" value="descripcion"/>
-        <property name="com.jaspersoft.studio.field.label" value="descripcion"/>
-        <property name="com.jaspersoft.studio.field.tree.path" value="registro_transaccion"/>
     </field>
     <field name="documento" class="java.lang.String">
-        <property name="com.jaspersoft.studio.field.name" value="descripcion"/>
-        <property name="com.jaspersoft.studio.field.label" value="descripcion"/>
-        <property name="com.jaspersoft.studio.field.tree.path" value="registro_transaccion"/>
     </field>
     <background>
         <band splitType="Stretch"/>

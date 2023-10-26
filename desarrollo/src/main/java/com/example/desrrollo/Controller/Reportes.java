@@ -95,6 +95,15 @@ private  IReporteService IreporteService;
         headers.setContentType(MediaType.APPLICATION_PDF);
         return ResponseEntity.ok().headers(headers).body(IreporteService.exportToReporteClientePdf(fechaInicio,fechaFinal,idPersona));
     }
+    @GetMapping("/reporte-acomulado-venta-producto-pdf/{fechaInicio}/{fechaFinal}/{idProducto}")
+    public ResponseEntity<byte[]> exportToReporteAcomuladoVentaProducto(
+            @PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime fechaInicio
+            ,@PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)LocalDateTime fechaFinal,
+            @PathVariable String idProducto) throws JRException, FileNotFoundException {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_PDF);
+        return ResponseEntity.ok().headers(headers).body(IreporteService.exportToReporteAcomuladoVentaProductoPdf(fechaInicio,fechaFinal,idProducto));
+    }
     @GetMapping("/reporte-venta-linea-producto-pdf/{fechaInicio}/{fechaFinal}")
     public ResponseEntity<byte[]> exportToReporteVentaLineaProducto(
             @PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime fechaInicio
