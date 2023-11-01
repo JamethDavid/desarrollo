@@ -1,14 +1,12 @@
 package com.example.desrrollo.Controller;
 
 import com.example.desrrollo.Api.*;
+import com.example.desrrollo.Entity.Empresa;
 import com.example.desrrollo.Entity.Kardex;
 import com.example.desrrollo.Entity.Producto;
 import com.example.desrrollo.Query.*;
 import com.example.desrrollo.Query.ReferenciaClienteDto;
-import com.example.desrrollo.Repository.RepositoryLineaProducto;
-import com.example.desrrollo.Repository.RepositoryLineaRegistroProducto;
-import com.example.desrrollo.Repository.RepositoryProducto;
-import com.example.desrrollo.Repository.RepositoryRegistroTransacion;
+import com.example.desrrollo.Repository.*;
 import com.example.desrrollo.Services.IserviceQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -34,6 +32,8 @@ public class ControllerProducto {
     private RepositoryRegistroTransacion repositoryRegistroTransacion;
     @Autowired
     private RepositoryLineaRegistroProducto repositoryLineaRegistroProducto;
+    @Autowired
+    private RepositoryEmpresa repositoryEmpresa;
 
     @GetMapping("/listaPrecio")
     public List<ProductoUnidadMedidaListaPrecioDTO> getALListProductoUnidadMedidaDTOS(){
@@ -100,6 +100,11 @@ public class ControllerProducto {
             ,@PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)LocalDateTime fechaFinal,
             @PathVariable String idProducto){
         return repositoryLineaRegistroProducto.findAllByAcomuladoVentaProducto(fechaInicial,fechaFinal,idProducto);
+    }
+
+    @GetMapping("/linea-empresa")
+    public List<Empresa> getListEmpresa(){
+        return repositoryEmpresa.findAll();
     }
 
     //---------------------desarrolla-----------------------//
