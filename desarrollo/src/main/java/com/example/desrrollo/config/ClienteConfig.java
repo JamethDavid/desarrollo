@@ -1,9 +1,14 @@
 package com.example.desrrollo.config;
 
 import com.example.desrrollo.Repository.RepositoryEmpresa;
+import jakarta.persistence.EntityManagerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -18,33 +23,36 @@ import java.util.Objects;
 
 @Configuration
 @EnableTransactionManagement
-@EnableJpaRepositories(
-        basePackageClasses = RepositoryEmpresa.class,
-        entityManagerFactoryRef = "todosEntityManagerFactory",
-        transactionManagerRef = "todosTransactionManager"
-)
+@EnableJpaRepositories(entityManagerFactoryRef = "mysqlEntityManagerFactory",
+        transactionManagerRef = "mysqlTransactionManager",
+        basePackages = {"com.example.desrrollo.Repository"})
+
 public class ClienteConfig {
+    @Primary
     @Bean
-    public LocalContainerEntityManagerFactoryBean todosEntityManagerFactory(
-            @Qualifier("dataSource") DataSource dataSource) {
-        LocalContainerEntityManagerFactoryBean localContainer =
-                new LocalContainerEntityManagerFactoryBean();
-        localContainer.setDataSource(dataSource);
-        localContainer.setPersistenceUnitName("mysql");
-        localContainer.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
-        Map<String,String> addItemProps = new HashMap<>();
-        addItemProps.put("hibernate.dialect","org.hibernate.dialect.MySQL5Dialect");
-        return localContainer;
+    @ConfigurationProperties(prefix = "spring.datasource")
+    public DataSourceProperties mysqlDataSourceProperties() {
+        return new DataSourceProperties();
     }
+    @Primary
     @Bean
-    public PlatformTransactionManager todosTransactionManager(
-            @Qualifier("todosEntityManagerFactory") LocalContainerEntityManagerFactoryBean todosEntityManagerFactory) {
-        return new JpaTransactionManager(Objects.requireNonNull(todosEntityManagerFactory.getObject()));
+    public DataSource mysqlDataSource(@Qualifier("mysqlDataSourceProperties") DataSourceProperties dataSourceProperties) {
+        return dataSourceProperties.initializeDataSourceBuilder().build();
     }
-
-
+    @Primary
+    @Bean
+    public LocalContainerEntityManagerFactoryBean mysqlEntityManagerFactory(@Qualifier("mysqlDataSource") DataSource hubDataSource, EntityManagerFactoryBuilder builder) {
+        return builder.dataSource(hubDataSource).packages("com.example.desrrollo.Entity")
+                .persistenceUnit("mysql").build();
+    }
+    @Primary
+    @Bean
+    public PlatformTransactionManager mysqlTransactionManager(@Qualifier("mysqlEntityManagerFactory") LocalContainerEntityManagerFactoryBean factory) {
+        return new JpaTransactionManager(Objects.requireNonNull(factory.getObject()));
+    }
 
 }
+
 
 
 

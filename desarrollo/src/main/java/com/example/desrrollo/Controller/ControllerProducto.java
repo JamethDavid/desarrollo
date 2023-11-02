@@ -106,6 +106,10 @@ public class ControllerProducto {
     public List<Empresa> getListEmpresa(){
         return repositoryEmpresa.findAll();
     }
+    @GetMapping("/linea-empresaDTO")
+    public List<EmpresaDTO> getListEmpresaDTO(){
+        return repositoryEmpresa.findAllEmpresa();
+    }
 
     //---------------------desarrolla-----------------------//
     @GetMapping("/linea-producto")
