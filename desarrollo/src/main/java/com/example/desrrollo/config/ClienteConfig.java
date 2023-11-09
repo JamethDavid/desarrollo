@@ -1,57 +1,43 @@
 package com.example.desrrollo.config;
 
-import com.example.desrrollo.Repository.RepositoryEmpresa;
-import jakarta.persistence.EntityManagerFactory;
-import org.springframework.beans.factory.annotation.Qualifier;;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.orm.jpa.JpaTransactionManager;
-import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
-import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
-import org.springframework.transaction.PlatformTransactionManager;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
+import com.example.desrrollo.util.ConstantesBD;
+import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+;
+import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
+import org.springframework.stereotype.Component;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
-import javax.sql.DataSource;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+@Component
+public class ClienteConfig extends AbstractRoutingDataSource {
+    @Autowired
+    DataSourceMap dataSources;
 
-@Configuration
-@EnableTransactionManagement
-@EnableJpaRepositories(entityManagerFactoryRef = "mysqlEntityManagerFactory",
-        transactionManagerRef = "mysqlTransactionManager",
-        basePackages = {"com.example.desrrollo.Repository"})
+    @Override
+    protected Object determineCurrentLookupKey() {
+        setDataSources(dataSources);
+        afterPropertiesSet();
 
-public class ClienteConfig {
-    @Primary
-    @Bean
-    @ConfigurationProperties(prefix = "spring.datasource")
-    public DataSourceProperties mysqlDataSourceProperties() {
-        return new DataSourceProperties();
+        if (SecurityContextHolder.getContext().getAuthentication() != null) {
+
+            HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+            return request.getSession().getAttribute("Key");
+
+        } else {
+            return ConstantesBD.session;
+        }
     }
-    @Primary
-    @Bean
-    public DataSource mysqlDataSource(@Qualifier("mysqlDataSourceProperties") DataSourceProperties dataSourceProperties) {
-        return dataSourceProperties.initializeDataSourceBuilder().build();
-    }
-    @Primary
-    @Bean
-    public LocalContainerEntityManagerFactoryBean mysqlEntityManagerFactory(@Qualifier("mysqlDataSource") DataSource hubDataSource, EntityManagerFactoryBuilder builder) {
-        return builder.dataSource(hubDataSource).packages("com.example.desrrollo.Entity")
-                .persistenceUnit("mysql").build();
-    }
-    @Primary
-    @Bean
-    public PlatformTransactionManager mysqlTransactionManager(@Qualifier("mysqlEntityManagerFactory") LocalContainerEntityManagerFactoryBean factory) {
-        return new JpaTransactionManager(Objects.requireNonNull(factory.getObject()));
+
+    @Autowired
+    public void setDataSources(DataSourceMap dataSources) {
+        setTargetDataSources(dataSources.getDataSourceMap());
     }
 
 }
+
+
 
 
 

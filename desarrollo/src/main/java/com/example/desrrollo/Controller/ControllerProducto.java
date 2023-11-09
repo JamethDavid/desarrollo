@@ -1,20 +1,27 @@
 package com.example.desrrollo.Controller;
 
 import com.example.desrrollo.Api.*;
-import com.example.desrrollo.Entity.Empresa;
-import com.example.desrrollo.Entity.Kardex;
-import com.example.desrrollo.Entity.Producto;
+import com.example.desrrollo.Entity.EmpresaC;
+import com.example.desrrollo.Entity.Usuario;
 import com.example.desrrollo.Query.*;
 import com.example.desrrollo.Query.ReferenciaClienteDto;
 import com.example.desrrollo.Repository.*;
 import com.example.desrrollo.Services.IserviceQuery;
+import com.example.desrrollo.Services.UsuarioService;
+import com.example.desrrollo.config.DataSourceMap;
+import com.example.desrrollo.util.ConstantesBD;
+import com.example.desrrollo.util.RestResponse;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -33,7 +40,12 @@ public class ControllerProducto {
     @Autowired
     private RepositoryLineaRegistroProducto repositoryLineaRegistroProducto;
     @Autowired
-    private RepositoryEmpresa repositoryEmpresa;
+    private RepositoryEmpresaC repositoryEmpresa;
+    @Autowired
+    protected UsuarioService usuarioService;
+    protected ObjectMapper mapper;
+    @Autowired
+    private DataSourceMap dataSources;
 
     @GetMapping("/listaPrecio")
     public List<ProductoUnidadMedidaListaPrecioDTO> getALListProductoUnidadMedidaDTOS(){
@@ -103,12 +115,66 @@ public class ControllerProducto {
     }
 
     @GetMapping("/linea-empresa")
-    public List<Empresa> getListEmpresa(){
+    public List<EmpresaC> getListEmpresa(){
         return repositoryEmpresa.findAll();
     }
-    @GetMapping("/linea-empresaDTO")
+
+    /*@GetMapping("/linea-empresaDTO")
     public List<EmpresaDTO> getListEmpresaDTO(){
         return repositoryEmpresa.findAllEmpresa();
+    }
+     */
+    @PostMapping("/login")
+    public RestResponse login(@RequestBody String usuarioJS, HttpSession session)
+            throws JsonParseException, JsonMappingException, IOException, SQLException {
+
+        System.out.println("Entro a login.");
+        this.mapper = new ObjectMapper();
+        Usuario dataForm = this.mapper.readValue(usuarioJS, Usuario.class);
+        ConstantesBD.session = ConstantesBD.TOKEN;
+
+        System.out.println("USUARIO: " + dataForm.getUsuario() + " - SESION: " + session.getId());
+
+        /** Consulta en BD el usuario */
+        Usuario dataBd = usuarioService.findByUsuario(dataForm.getUsuario());
+
+        if (dataBd != null) {
+
+            if (usuarioService.validarFecha(dataBd.getFechafinal()) <= 0) {
+                return new RestResponse(HttpStatus.NOT_ACCEPTABLE.value(),
+                        "Su usuario ha expirado, por favor comuniquese con su ascesor");
+            }
+
+            /** Valida los datos de la consulta con los datos del formulario */
+            if (dataBd.getPassword().equals(dataForm.getPassword())
+                    && dataBd.getUsuario().equals(dataForm.getUsuario())) {
+
+                /** Consulta en BD la empresa del Usuario */
+                EmpresaC empresaC = repositoryEmpresa.findByUsuario(dataBd.getUsuario());
+
+                if (empresaC != null && !empresaC.getPoolEmpresaAlterna().equals("")) { // Valida Si existe una
+                    // empresa para este
+                    // usuario.
+
+                    System.out.println("BD CLIENTE: " + empresaC.getPoolEmpresa());
+                    System.out.println("BD CLIENTE ALTERNA: " + empresaC.getPoolEmpresaAlterna());
+                    ConstantesBD.bd = empresaC.getPoolEmpresaAlterna();
+
+                    dataSources.addDataSource(session.getId(), dataSources.dataSource());
+                    return new RestResponse(HttpStatus.OK.value(), "Sesión iniciada.", session.getId());
+                } else {
+                    return new RestResponse(HttpStatus.NOT_ACCEPTABLE.value(),
+                            "Este usuario no se encuentra asociado, Comuniquese con la empresa.");
+                }
+            } else {
+                return new RestResponse(HttpStatus.NOT_ACCEPTABLE.value(),
+                        "Usuario o Contraseña incorrectos, intente nuevamente.");
+            }
+        } else {
+            return new RestResponse(HttpStatus.NOT_ACCEPTABLE.value(),
+                    "Usuario o Contraseña incorrectos, intente nuevamente.");
+        }
+        // return null;
     }
 
     //---------------------desarrolla-----------------------//
