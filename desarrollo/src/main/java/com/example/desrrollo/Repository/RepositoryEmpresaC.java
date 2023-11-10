@@ -8,4 +8,5 @@ import org.springframework.stereotype.Repository;
 public interface RepositoryEmpresaC extends JpaRepository<EmpresaC, String> {
     EmpresaC findByUsuario(String usuario);
 
+
 }

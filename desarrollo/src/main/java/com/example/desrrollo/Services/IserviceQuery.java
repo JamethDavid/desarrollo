@@ -2,6 +2,7 @@ package com.example.desrrollo.Services;
 
 import com.example.desrrollo.Api.KardexDTO;
 import com.example.desrrollo.Api.RegistroTransaccionInformeClienteDTO;
+import com.example.desrrollo.Api.ZonaReporteVentaDTO;
 import com.example.desrrollo.Entity.Kardex;
 import com.example.desrrollo.Entity.Producto;
 import com.example.desrrollo.Query.KardexReferenciaDTO;
@@ -17,6 +18,7 @@ public interface IserviceQuery {
     KardexReferenciaDTO findByIdVendedorKardex(String idproducto);
     List<ReferenciaClienteDto>findAllCliente();
     List<ReferenciaZonaDTO>findAllZona();
+    List<ZonaReporteVentaDTO>findAllZonaReporteNombre(String nombre);
 
 
 }

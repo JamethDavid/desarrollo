@@ -1,6 +1,9 @@
 package com.example.desrrollo.Controller;
 
 import com.example.desrrollo.Services.*;
+import com.example.desrrollo.config.DataSourceMap;
+import com.example.desrrollo.util.ConstantesBD;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import net.sf.jasperreports.engine.JRException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -18,16 +21,23 @@ import java.time.LocalDateTime;
 public class Reportes {
 @Autowired
 private  IReporteService IreporteService;
+    protected ObjectMapper mapper;
+    @Autowired
+    private DataSourceMap dataSources;
     @GetMapping("/auxilio-inventario-pdf")
     public ResponseEntity<byte[]> exportPdf() throws JRException, FileNotFoundException {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_PDF);
         return ResponseEntity.ok().headers(headers).body(IreporteService.exportPdf());
     }
-    @GetMapping("/lista-precio-pdf")
-    public ResponseEntity<byte[]> exporListaPreciostPdf() throws JRException, FileNotFoundException {
+    @GetMapping("/lista-precio-pdf/{token}")
+    public ResponseEntity<byte[]> exporListaPreciostPdf(@PathVariable String token) throws JRException, FileNotFoundException {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_PDF);
+        if (dataSources.getDataSourceMap().containsKey(token)) // Valida si el usuario esta autenticado. System.out.println("SESION: " + token);
+        {
+            ConstantesBD.session = token;
+        }
         return ResponseEntity.ok().headers(headers).body(IreporteService.exportToListaPrecioPdf());
     }
     @GetMapping("/lista-existente-pdf")

@@ -12,4 +12,5 @@ public class EmpresaService {
     public EmpresaC findByUsuario(String usuario) {
         return repositoryEmpresaC.findByUsuario(usuario);
     }
+
 }

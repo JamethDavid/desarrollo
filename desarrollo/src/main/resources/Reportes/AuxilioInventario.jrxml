@@ -3,8 +3,6 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Reports" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f5615c8c-88e5-466b-81be-8ffc4278f8d1">
     <property name="com.jaspersoft.studio.data.sql.tables" value=""/>
     <property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter"/>
-    <queryString language="SQL">
-    </queryString>
     <field name="fecha" class="java.time.LocalDateTime">
         <property name="com.jaspersoft.studio.field.name" value="fecha"/>
         <property name="com.jaspersoft.studio.field.label" value="fecha"/>
@@ -52,8 +50,16 @@
                 </textElement>
                 <text><![CDATA[Auxilio Inventarios]]></text>
             </staticText>
+            <staticText>
+                <reportElement x="0" y="0" width="560" height="79" uuid="8efefff8-d7c9-4fc6-9337-c68fc522bada"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="19" isBold="true"/>
+                </textElement>
+                <text><![CDATA[$F{nombreEmpresa}]]></text>
+            </staticText>
         </band>
     </title>
+
     <pageHeader>
         <band height="35" splitType="Stretch"/>
     </pageHeader>

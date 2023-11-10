@@ -51,9 +51,27 @@ public class ControllerProducto {
     public List<ProductoUnidadMedidaListaPrecioDTO> getALListProductoUnidadMedidaDTOS(){
         return repositoryProducto.findAllProductoUnidadMedidaListaPrecioDTO();
     }
+    @GetMapping("/listaPrecio/{token}")
+    public List<ProductoUnidadMedidaListaPrecioDTO> getALListProductoUnidadMedidaDTOStoken(@PathVariable String token){
+        System.out.println("Entro a Linea de producto -> getLineaProducto.");
+        if (dataSources.getDataSourceMap().containsKey(token)) // Valida si el usuario esta autenticado. System.out.println("SESION: " + token);
+        {
+            ConstantesBD.session = token;
+        }
+        return repositoryProducto.findAllProductoUnidadMedidaListaPrecioDTO();
+    }
 
     @GetMapping("/listaExistente")
     public List<ProductoUnidadMedidaListaExistenteDTO> getALListProductoUnidadMedidaDTOSExistente(){
+        return repositoryProducto.findAllProductoUnidadMedidaListaExistenteDTO();
+    }
+    @GetMapping("/listaExistente/{token}")
+    public List<ProductoUnidadMedidaListaExistenteDTO> getALListProductoUnidadMedidaDTOSExistentetoken(@PathVariable String token){
+        System.out.println("Entro a Linea de producto -> getLineaProducto.");
+        if (dataSources.getDataSourceMap().containsKey(token)) // Valida si el usuario esta autenticado. System.out.println("SESION: " + token);
+        {
+            ConstantesBD.session = token;
+        }
         return repositoryProducto.findAllProductoUnidadMedidaListaExistenteDTO();
     }
 
@@ -66,14 +84,21 @@ public class ControllerProducto {
     return repositoryProducto.findAllByIdKardex(idVendedor);
     }
 
-    @GetMapping("/linea-producto/{nombre}")
-    public List<ProductoLineaProductoDTO> getProductoLineaDTO(@PathVariable String nombre){
-        return repositoryProducto.findAllByNombre(nombre);
-    }
-    @GetMapping("/linea-zona/{nombre}")
-    public List<ZonaReporteVentaDTO> getZonaLineaDTO(@PathVariable String nombre){
+    //@GetMapping("/linea-producto/{nombre}")
+    //public List<ProductoLineaProductoDTO> getProductoLineaDTO(@PathVariable String nombre){
+    //    return repositoryProducto.findAllByNombre(nombre);
+    //}
+ /*   @GetMapping("/linea-zona/{nombre}/{token}")
+    public List<ZonaReporteVentaDTO> getZonaLineaDTO(@PathVariable String nombre, @PathVariable String token){
+        System.out.println("Entro a Linea de producto -> getLineaProducto.");
+        if (dataSources.getDataSourceMap().containsKey(token)) // Valida si el usuario esta autenticado. System.out.println("SESION: " + token);
+        {
+            ConstantesBD.session = token;
+        }
         return repositoryRegistroTransacion.findAllZona(nombre);
     }
+
+  */
     @GetMapping("/venta-linea-producto/{fechaInicial}/{fechaFinal}")
     public List<InformeVentaLineaProductoDTO> getInformeVentaLineaProductoDTO(
             @PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime fechaInicial
@@ -176,25 +201,61 @@ public class ControllerProducto {
         }
         // return null;
     }
-
     //---------------------desarrolla-----------------------//
-    @GetMapping("/linea-producto")
-    public List<ProductoNombreDTO> getProductoLineaDTO(){
+    @GetMapping("/linea-producto/{token}")
+    public List<ProductoNombreDTO> getProductoLineaDTO(@PathVariable String token) {
+        System.out.println("Entro a Linea de producto -> getLineaProducto.");
+        if (dataSources.getDataSourceMap().containsKey(token)) // Valida si el usuario esta autenticado. System.out.println("SESION: " + token);
+        {
+            ConstantesBD.session = token;
+        }
         return iserviceQuery.findAllByName();
     }
-    @GetMapping("/lista-kardex")
-    public List<KardexReferenciaDTO> getKardex(){
-        return iserviceQuery.findAllByNameKardexDtos(); }
-    @GetMapping("/producto-id/{idproducto}")
-    public KardexReferenciaDTO getProductoIdDTO(@PathVariable String idproducto){
+    @GetMapping("/lista-kardex/{token}")
+    public List<KardexReferenciaDTO> getKardex(@PathVariable String token){
+        System.out.println("Entro a Linea de producto -> getLineaProducto.");
+        if (dataSources.getDataSourceMap().containsKey(token)) // Valida si el usuario esta autenticado. System.out.println("SESION: " + token);
+        {
+            ConstantesBD.session = token;
+        }
+        return iserviceQuery.findAllByNameKardexDtos();
+    }
+    @GetMapping("/producto-id/{idproducto}/{token}")
+    public KardexReferenciaDTO getProductoIdDTO(@PathVariable String idproducto,@PathVariable String token){
+        System.out.println("Entro a Linea de producto -> getLineaProducto.");
+        if (dataSources.getDataSourceMap().containsKey(token)) // Valida si el usuario esta autenticado. System.out.println("SESION: " + token);
+        {
+            ConstantesBD.session = token;
+        }
         return iserviceQuery.findByIdVendedorKardex(idproducto);
     }
-    @GetMapping("/lista-cliente")
-    public List<ReferenciaClienteDto> getAllClienteListDTO(){
+    @GetMapping("/lista-cliente/{token}")
+    public List<ReferenciaClienteDto> getAllClienteListDTO(@PathVariable String token){
+        System.out.println("Entro a Linea de producto -> getLineaProducto.");
+        if (dataSources.getDataSourceMap().containsKey(token)) // Valida si el usuario esta autenticado. System.out.println("SESION: " + token);
+        {
+            ConstantesBD.session = token;
+        }
         return iserviceQuery.findAllCliente();
     }
-    @GetMapping("/lista-zona")
-    public List<ReferenciaZonaDTO> getAllZonaListDTO(){
+    @GetMapping("/lista-zona/{token}")
+    public List<ReferenciaZonaDTO> getAllZonaListDTO(@PathVariable String token){
+        System.out.println("Entro a Linea de producto -> getLineaProducto.");
+        if (dataSources.getDataSourceMap().containsKey(token)) // Valida si el usuario esta autenticado. System.out.println("SESION: " + token);
+        {
+            ConstantesBD.session = token;
+        }
         return iserviceQuery.findAllZona();
     }
+
+    @GetMapping("/linea-zona-nombre/{nombre}/{token}")
+    public List<ZonaReporteVentaDTO> getZonaLineaDTO(@PathVariable String nombre, @PathVariable String token){
+        System.out.println("Entro a Linea de producto -> getLineaProducto.");
+        if (dataSources.getDataSourceMap().containsKey(token)) // Valida si el usuario esta autenticado. System.out.println("SESION: " + token);
+        {
+            ConstantesBD.session = token;
+        }
+        return iserviceQuery.findAllZonaReporteNombre(nombre);
+    }
+
 }
