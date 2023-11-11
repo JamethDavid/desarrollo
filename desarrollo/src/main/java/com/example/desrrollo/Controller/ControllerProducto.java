@@ -88,7 +88,7 @@ public class ControllerProducto {
     //public List<ProductoLineaProductoDTO> getProductoLineaDTO(@PathVariable String nombre){
     //    return repositoryProducto.findAllByNombre(nombre);
     //}
- /*   @GetMapping("/linea-zona/{nombre}/{token}")
+    @GetMapping("/linea-zona/{nombre}/{token}")
     public List<ZonaReporteVentaDTO> getZonaLineaDTO(@PathVariable String nombre, @PathVariable String token){
         System.out.println("Entro a Linea de producto -> getLineaProducto.");
         if (dataSources.getDataSourceMap().containsKey(token)) // Valida si el usuario esta autenticado. System.out.println("SESION: " + token);
@@ -98,7 +98,7 @@ public class ControllerProducto {
         return repositoryRegistroTransacion.findAllZona(nombre);
     }
 
-  */
+
     @GetMapping("/venta-linea-producto/{fechaInicial}/{fechaFinal}")
     public List<InformeVentaLineaProductoDTO> getInformeVentaLineaProductoDTO(
             @PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime fechaInicial
@@ -169,6 +169,8 @@ public class ControllerProducto {
                 return new RestResponse(HttpStatus.NOT_ACCEPTABLE.value(),
                         "Su usuario ha expirado, por favor comuniquese con su ascesor");
             }
+
+
 
             /** Valida los datos de la consulta con los datos del formulario */
             if (dataBd.getPassword().equals(dataForm.getPassword())
@@ -248,7 +250,7 @@ public class ControllerProducto {
         return iserviceQuery.findAllZona();
     }
 
-    @GetMapping("/linea-zona-nombre/{nombre}/{token}")
+  /*  @GetMapping("/linea-zona-nombre/{nombre}/{token}")
     public List<ZonaReporteVentaDTO> getZonaLineaDTO(@PathVariable String nombre, @PathVariable String token){
         System.out.println("Entro a Linea de producto -> getLineaProducto.");
         if (dataSources.getDataSourceMap().containsKey(token)) // Valida si el usuario esta autenticado. System.out.println("SESION: " + token);
@@ -258,4 +260,6 @@ public class ControllerProducto {
         return iserviceQuery.findAllZonaReporteNombre(nombre);
     }
 
+
+   */
 }
