@@ -50,13 +50,6 @@
                 </textElement>
                 <text><![CDATA[Auxilio Inventarios]]></text>
             </staticText>
-            <staticText>
-                <reportElement x="0" y="0" width="560" height="79" uuid="8efefff8-d7c9-4fc6-9337-c68fc522bada"/>
-                <textElement textAlignment="Center" verticalAlignment="Middle">
-                    <font size="19" isBold="true"/>
-                </textElement>
-                <text><![CDATA[$F{nombreEmpresa}]]></text>
-            </staticText>
         </band>
     </title>
 

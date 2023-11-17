@@ -201,8 +201,19 @@ public class ControllerProducto {
             return new RestResponse(HttpStatus.NOT_ACCEPTABLE.value(),
                     "Usuario o Contraseña incorrectos, intente nuevamente.");
         }
-        // return null;
     }
+    @RequestMapping(value = "/logout", method = RequestMethod.POST)
+    public RestResponse logout(@RequestBody String token) {
+
+        System.out.println("Entro a logout.");
+        if (dataSources.getDataSourceMap().containsKey(token)) {// Valida si el usuario esta autenticado.
+            dataSources.removeDataSource(token);
+            return new RestResponse(HttpStatus.OK.value(), "Sesión cerrada correctamente.");
+        } else {
+            return new RestResponse(HttpStatus.UNAUTHORIZED.value());
+        }
+    }
+
     //---------------------desarrolla-----------------------//
     @GetMapping("/linea-producto/{token}")
     public List<ProductoNombreDTO> getProductoLineaDTO(@PathVariable String token) {
