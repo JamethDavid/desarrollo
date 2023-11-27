@@ -179,13 +179,13 @@ public class ControllerProducto {
                 /** Consulta en BD la empresa del Usuario */
                 EmpresaC empresaC = repositoryEmpresa.findByUsuario(dataBd.getUsuario());
 
-                if (empresaC != null && !empresaC.getPoolEmpresaAlterna().equals("")) { // Valida Si existe una
+                if (empresaC != null && !empresaC.getPoolEmpresa().equals("")) { // Valida Si existe una
                     // empresa para este
                     // usuario.
 
                     System.out.println("BD CLIENTE: " + empresaC.getPoolEmpresa());
-                    System.out.println("BD CLIENTE ALTERNA: " + empresaC.getPoolEmpresaAlterna());
-                    ConstantesBD.bd = empresaC.getPoolEmpresaAlterna();
+                    System.out.println("BD CLIENTE ALTERNA: " + empresaC.getPoolEmpresa());
+                    ConstantesBD.bd = empresaC.getPoolEmpresa();
 
                     dataSources.addDataSource(session.getId(), dataSources.dataSource());
                     return new RestResponse(HttpStatus.OK.value(), "Sesión iniciada.", session.getId());
